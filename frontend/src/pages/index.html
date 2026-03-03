@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/frontend/src/pages/styleindex.css" />
+  <title>Tableau de bord - Pédiatre</title>
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <span class="page-header__title">Tableau de bord — Pédiatre</span>
+    <img src="/frontend/static/image.png" alt="Logo Akdital" class="page-header__logo"
+      style="margin-left: auto; height: 160px;" />
+  </header>
+
+  <main class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section" aria-label="Informations du médecin pédiatre - GeniDoc Hayat">
+        <h2>Informations</h2>
+
+        <p class="info-row">
+          <img src="/frontend/static/stethoscope.svg" alt="Icône utilisateur" class="icon user-icon" />
+          <strong>Nom du médecin :</strong>
+          <span id="genidoc_id1">Dr. SENHAJI Anas</span>
+        </p>
+
+        <p class="info-row">
+          <img src="/frontend/static/hospital.svg" alt="Icône hôpital" class="icon hospital-icon" />
+          <strong>Établissement d’affectation :</strong>
+          <span id="genidoc_id1">Clinique Akdital Oasis Oncologie</span>
+        </p>
+        <p class="info-row">
+          <img src="/frontend/static/blinds.svg" alt="Icône calendrier" class="icon calendar-icon" />
+          <strong><a href="/frontend/src/pages/patients.html">Mes Patients</a></strong>
+          <span id="genidoc_patient"></span>
+        </p>
+        <p class="info-row">
+          <img src="/frontend/static/messagerie.png" alt="Icône calendrier" class="icon calendar-icon" />
+          <strong><a href="/frontend/src/pages/messagerie.html">Messagerie</a></strong>
+          <span id="messagerie_genidoc"></span>
+        </p>
+        <hr class="sep2">
+        <div class="vr"></div>
+        <div class="articles_genidoc_obligatoires">
+          <article class="vaccination_genidoc">
+            <h3 class="vaccination_genidoc__title">Vaccination</h3>
+            <p class="vaccination_genidoc__desc">Accéder</p>
+            <a class="vaccination_genidoc__link pro-link" href="vaccination.html">
+              <span class="pro-link__text">Voir</span>
+              <span class="pro-link__icon" aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <article class="suivi_staturo_psychomoteur_genidoc">
+            <h3 class="mini-card__title">Suivi Staturo-psycho-moteur</h3>
+            <p class="mini-card__desc">Courbes, mesures, jalons et historique.</p>
+
+            <div class="mini-card__actions">
+              <a class="mini-card__btn" href="suivi_staturo_psychomoteur.html">Voir</a>
+            </div>
+          </article>
+
+          <article class="la_prevention_et_le_depistage_genidoc">
+            <h3 class="mini-card__title">Prévention & dépistage</h3>
+            <p class="mini-card__desc">Check-lists, rappels et dépistages recommandés.</p>
+
+            <a class="mini-card__btn" href="prevention_depistage.html">Ouvrir</a>
+          </article>
+        </div>
+        <nav aria-label="Menu principal" class="menu">
+          <a href="parametresgenidoc.html">
+            <img src="/frontend/static/settings-2.svg" alt="" width="20" class="parametresgenidoc" />
+            Paramètres
+          </a>
+
+          <a href="notificationsgenidoc.html">
+            <img src="/frontend/static/bell.svg" alt="" width="20" class="notificationsgenidoc" />
+            Notifications
+          </a>
+
+          <a href="aidegenidoc.html">
+            <img src="/frontend/static/badge-info.svg" alt="" width="20" class="aidegenidoc" />
+            Aide
+          </a>
+
+          <a href="deconnexiongenidoc.html">
+            <img src="/frontend/static/log-out.svg" alt="" width="20" class="deconnexiongenidoc" />
+            Déconnexion
+          </a>
+        </nav>
+
+        <div class="langue">
+          <label for="lang-select" class="langue-label">Langue :</label>
+          <select id="lang-select" name="lang">
+            <option value="genidoc_ar">العربية</option>
+            <option value="genidoc_fr" selected>Français</option>
+            <option value="genidoc_en">English</option>
+            <option value="genidoc_es">Español</option>
+            <option value="genidoc_de">Deutsch</option>
+          </select>
+        </div>
+    </aside>
+
+    <section class="cards-grid" aria-label="Résumé du jour">
+      <article class="card card-1">
+        <section class="card__hero">
+          <header class="card__hero-header">
+            <span class="card__kpi">Patients aujourd’hui</span>
+            <div class="card__icon">
+              <img src="/frontend/static/doctor-consultation.png" alt="patient_genidoc_img">
+            </div>
+          </header>
+          <p class="card__job-title"><span id="kpi-today">—</span></p>
+        </section>
+
+        <footer class="card__footer">
+          <div class="card__job-summary">
+            <div class="card__job">
+              <p class="card__job-title-small">Consultations du jour</p>
+            </div>
+          </div>
+          <button class="card__btn" type="button">Voir</button>
+        </footer>
+      </article>
+
+      <article class="card card-2">
+        <section class="card__hero card__hero--blue">
+          <header class="card__hero-header">
+            <span class="card__kpi">RDV à venir</span>
+            <div class="card__icon">
+              <img src="/frontend/static/schedule.png" alt="rdv_genidoc_img">
+            </div>
+          </header>
+          <p class="card__job-title"><span id="kpi-upcoming">—</span></p>
+        </section>
+
+        <footer class="card__footer">
+          <div class="card__job-summary">
+            <div class="card__job">
+              <p class="card__job-title-small">Prochains rendez-vous</p>
+            </div>
+          </div>
+          <button class="card__btn" type="button">Voir</button>
+        </footer>
+      </article>
+
+      <article class="card card-3">
+        <section class="card__hero card__hero--red">
+          <header class="card__hero-header">
+            <span class="card__kpi">Urgences / priorités</span>
+            <div class="card__icon">
+              <img src="/frontend/static/quick.png" alt="urgency_genidoc_img">
+            </div>
+          </header>
+          <p class="card__job-title"><span id="kpi-urgent">—</span></p>
+        </section>
+
+        <footer class="card__footer">
+          <div class="card__job-summary">
+            <div class="card__job">
+              <p class="card__job-title-small">Cas à traiter</p>
+            </div>
+          </div>
+          <button class="card__btn" type="button">Voir</button>
+        </footer>
+      </article>
+
+      <!-- CARD 4 -->
+      <article class="card card-4">
+        <section class="card__hero card__hero--gray">
+          <header class="card__hero-header">
+            <span class="card__kpi">Dossiers en attente</span>
+            <div class="card__icon">
+              <img src="/frontend/static/patient.png" alt="dossier_pending_genidoc_img">
+            </div>
+          </header>
+          <p class="card__job-title"><span id="kpi-pending">—</span></p>
+        </section>
+
+        <footer class="card__footer">
+          <div class="card__job-summary">
+            <div class="card__job">
+              <p class="card__job-title-small">Résultats / CR / signatures</p>
+            </div>
+          </div>
+          <button class="card__btn" type="button">Voir</button>
+        </footer>
+      </article>
+    </section>
+  </main>
+</body>
+
+</html>

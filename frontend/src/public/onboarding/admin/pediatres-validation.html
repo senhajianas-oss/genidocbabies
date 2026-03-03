@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Validation pédiatres</title>
+  <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Admin — Validation pédiatres</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row"><span id="genidoc_id1">Rôle :</span><span>Admin</span></div>
+        <div class="info-row"><span id="genidoc_id1">Demandes :</span><span>—</span></div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./index.html">Dashboard</a>
+        <a href="./pediatres-validation.html" aria-current="page">Validation pédiatres</a>
+        <a href="./medecins.html">Médecins</a>
+        <a href="./organisation.html">Organisation</a>
+        <a href="./rapports.html">Rapports</a>
+        <a href="./settings.html">Paramètres</a>
+        <a href="../../auth/login.html">Déconnexion</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon"><img src="/frontend/static/world.png" alt="" class="genidoc_world"></span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <img src="/frontend/static/check.png" alt="" class="genidoc_check">
+            <span class="form-card__title">Demandes en attente</span>
+          </div>
+          <div class="form-card__subtitle">Vérifie le profil + documents puis approuve ou refuse.</div>
+        </div>
+
+        <div class="genidoc-form">
+          <div class="section-title">Filtrer</div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="etat">État</label>
+              <select id="etat" name="etat">
+                <option value="PENDING" selected>En attente</option>
+                <option value="APPROVED">Approuvés</option>
+                <option value="REJECTED">Refusés</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="q">Nom / Email</label>
+              <input id="q" name="q" type="text" placeholder="Rechercher..." />
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="cards-grid">
+            <a class="card card-3" href="./pediatre-detail.html">
+              <div class="card__hero card__hero--red">
+                <div class="card__hero-header"><span>Demande</span><span>⏳</span></div>
+                <div class="card__job-title">Dr —</div>
+                <div class="card__desc">Email: — | N° ordre: — | Docs: reçus</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary"><span>Vérifier</span><span class="badge">→</span></div>
+                <div class="card__btn">Ouvrir</div>
+              </div>
+            </a>
+
+            <a class="card card-3" href="./pediatre-detail.html">
+              <div class="card__hero card__hero--red">
+                <div class="card__hero-header"><span>Demande</span><span>⏳</span></div>
+                <div class="card__job-title">Dr —</div>
+                <div class="card__desc">Email: — | N° ordre: — | Docs: partiels</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary"><span>Vérifier</span><span class="badge">→</span></div>
+                <div class="card__btn">Ouvrir</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="hint-box">
+            Conseil : valide uniquement si numéro d’ordre + carte pro sont conformes.
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

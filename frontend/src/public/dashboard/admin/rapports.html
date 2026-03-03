@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rapports — Admin GeniDoc</title>
+    <meta name="description" content="Rapports d'activité et exports — Admin GeniDoc." />
+    <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+    <header class="page-header">
+        <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+        <div class="page-header__divider"></div>
+        <h1 class="page-header__title">Admin — Rapports</h1>
+    </header>
+
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <section class="info-section">
+                <div class="info-row"><span>Organisation :</span><span>—</span></div>
+                <div class="info-row"><span>Rôle :</span><span>Admin</span></div>
+            </section>
+            <hr class="separateur sep2" />
+            <nav class="menu">
+                <a href="./index.html">Dashboard</a>
+                <a href="./pediatres-validation.html">Validation pédiatres</a>
+                <a href="./medecins.html">Médecins</a>
+                <a href="./organisation.html">Organisation</a>
+                <a href="./rapports.html" aria-current="page">Rapports</a>
+                <a href="./settings.html">Paramètres</a>
+                <a href="../../auth/login.html">Déconnexion</a>
+            </nav>
+            <div class="langue">
+                <span class="langue-icon">🌐</span>
+                <select aria-label="Langue">
+                    <option value="fr" selected>FR</option>
+                    <option value="ar">AR</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="form-card">
+                <div class="form-card__header">
+                    <div class="form-card__kpi">
+                        <span class="badge">📊</span>
+                        <span class="form-card__title">Rapports &amp; activité</span>
+                    </div>
+                    <div class="form-card__subtitle">
+                        Suivez l'activité de votre organisme et exportez vos données.
+                    </div>
+                </div>
+
+                <div class="genidoc-form">
+                    <div class="section-title">Statistiques clés</div>
+
+                    <div class="cards-grid">
+                        <div class="card card-2">
+                            <div class="card__hero card__hero--blue">
+                                <div class="card__hero-header">
+                                    <span>Pédiatres</span>
+                                    <span>👨‍⚕️</span>
+                                </div>
+                                <div class="card__job-title" id="stat_pediatres">—</div>
+                                <div class="card__desc">Validés dans l'organisme.</div>
+                            </div>
+                        </div>
+
+                        <div class="card card-1">
+                            <div class="card__hero card__hero--green">
+                                <div class="card__hero-header">
+                                    <span>Patients</span>
+                                    <span>👶</span>
+                                </div>
+                                <div class="card__job-title" id="stat_patients">—</div>
+                                <div class="card__desc">Dossiers actifs.</div>
+                            </div>
+                        </div>
+
+                        <div class="card card-3">
+                            <div class="card__hero card__hero--red">
+                                <div class="card__hero-header">
+                                    <span>En attente</span>
+                                    <span>⏳</span>
+                                </div>
+                                <div class="card__job-title" id="stat_pending">—</div>
+                                <div class="card__desc">Demandes à traiter.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-divider"></div>
+
+                    <div class="section-title">Exporter</div>
+
+                    <div class="form-actions">
+                        <button type="button" class="card__btn">Exporter CSV</button>
+                        <button type="button" class="btn-secondary">Exporter PDF</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

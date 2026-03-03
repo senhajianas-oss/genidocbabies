@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carnet &amp; scans — Tuteur GeniDoc</title>
+    <meta name="description" content="Upload du carnet de santé — Tuteur GeniDoc." />
+    <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+    <header class="page-header">
+        <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+        <div class="page-header__divider"></div>
+        <h1 class="page-header__title">Tuteur — Carnet &amp; scans</h1>
+    </header>
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <section class="info-section">
+                <div class="info-row"><span>Nom :</span><span>—</span></div>
+                <div class="info-row"><span>Rôle :</span><span>Tuteur</span></div>
+            </section>
+            <hr class="separateur sep2" />
+            <nav class="menu">
+                <a href="./index.html">Dashboard</a>
+                <a href="./enfants.html">Mes enfants</a>
+                <a href="./carnet-upload.html" aria-current="page">Carnet &amp; scans</a>
+                <a href="./rendezvous.html">Rendez-vous</a>
+                <a href="./profil.html">Mon profil</a>
+                <a href="./settings.html">Paramètres</a>
+                <a href="../../auth/login.html">Déconnexion</a>
+            </nav>
+            <div class="langue">
+                <span class="langue-icon"><img src="/frontend/static/world.png" class="emoji-icon" alt="Langue"></span>
+                <select aria-label="Langue">
+                    <option value="fr" selected>FR</option>
+                    <option value="ar">AR</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="form-card">
+                <div class="form-card__header">
+                    <div class="form-card__kpi">
+                        <span class="badge"><img src="/frontend/static/list.png" class="emoji-icon" alt="Doc"></span>
+                        <span class="form-card__title">Carnet &amp; scans</span>
+                    </div>
+                    <div class="form-card__subtitle">
+                        Importez le carnet de santé physique de votre enfant.
+                    </div>
+                </div>
+
+                <form class="genidoc-form" action="#" method="post" enctype="multipart/form-data" novalidate>
+                    <div class="section-title">Sélectionner un enfant</div>
+
+                    <div class="form-grid">
+                        <div class="form-field form-field--full">
+                            <label for="enfant_select">Enfant *</label>
+                            <select id="enfant_select" name="enfant_id" required>
+                                <option value="" selected disabled>Choisir un enfant</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-divider"></div>
+
+                    <div class="section-title">Ajouter le scan du carnet</div>
+
+                    <div class="upload-box">
+                        <div class="upload-box__title">Scan ou photo du carnet *</div>
+                        <div class="upload-box__desc">Formats acceptés : PDF, JPG, PNG. Plusieurs fichiers autorisés.
+                        </div>
+                        <input type="file" name="carnet_files" accept=".pdf,.jpg,.jpeg,.png" multiple />
+                    </div>
+
+                    <div class="form-divider"></div>
+
+                    <div class="hint-box">
+                        Astuce : prenez des photos de chaque double-page du carnet pour un résultat optimal.
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="card__btn">Uploader les scans</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

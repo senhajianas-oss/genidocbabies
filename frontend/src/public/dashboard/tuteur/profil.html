@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon profil — Tuteur GeniDoc</title>
+    <meta name="description" content="Profil du tuteur — GeniDoc." />
+    <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+    <header class="page-header">
+        <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+        <div class="page-header__divider"></div>
+        <h1 class="page-header__title">Tuteur — Mon profil</h1>
+    </header>
+
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <section class="info-section">
+                <div class="info-row"><span>Nom :</span><span>—</span></div>
+                <div class="info-row"><span>Rôle :</span><span>Tuteur</span></div>
+            </section>
+            <hr class="separateur sep2" />
+            <nav class="menu">
+                <a href="./index.html">Dashboard</a>
+                <a href="./enfants.html">Mes enfants</a>
+                <a href="./carnet-upload.html">Carnet &amp; scans</a>
+                <a href="./rendezvous.html">Rendez-vous</a>
+                <a href="./profil.html" aria-current="page">Mon profil</a>
+                <a href="./settings.html">Paramètres</a>
+                <a href="../../auth/login.html">Déconnexion</a>
+            </nav>
+            <div class="langue">
+                <span class="langue-icon">🌐</span>
+                <select aria-label="Langue">
+                    <option value="fr" selected>FR</option>
+                    <option value="ar">AR</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="form-card">
+                <div class="form-card__header">
+                    <div class="form-card__kpi">
+                        <span class="badge">👤</span>
+                        <span class="form-card__title">Mon profil</span>
+                    </div>
+                    <div class="form-card__subtitle">
+                        Modifiez vos informations personnelles.
+                    </div>
+                </div>
+
+                <form class="genidoc-form" action="#" method="post" novalidate>
+                    <div class="section-title">Informations personnelles</div>
+
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="tuteur_tel">Téléphone *</label>
+                            <input type="tel" id="tuteur_tel" name="tuteur_tel" placeholder="Ex: 06XXXXXXXX" required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="tuteur_cin">CIN / Identité</label>
+                            <input type="text" id="tuteur_cin" name="tuteur_cin" placeholder="Ex: AB123456" />
+                        </div>
+
+                        <div class="form-field form-field--full">
+                            <label for="tuteur_adresse">Adresse</label>
+                            <input type="text" id="tuteur_adresse" name="tuteur_adresse"
+                                placeholder="Rue, quartier..." />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="tuteur_ville">Ville *</label>
+                            <input type="text" id="tuteur_ville" name="tuteur_ville" placeholder="Ex: Casablanca"
+                                required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="tuteur_profession">Profession</label>
+                            <input type="text" id="tuteur_profession" name="tuteur_profession"
+                                placeholder="Optionnel" />
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="card__btn">Enregistrer les modifications</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

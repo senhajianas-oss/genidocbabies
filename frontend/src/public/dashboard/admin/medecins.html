@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Médecins — Admin GeniDoc</title>
+    <meta name="description" content="Gestion des médecins de l'organisme — Admin GeniDoc." />
+    <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+    <header class="page-header">
+        <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+        <div class="page-header__divider"></div>
+        <h1 class="page-header__title">Admin — Médecins</h1>
+    </header>
+
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <section class="info-section">
+                <div class="info-row"><span>Organisation :</span><span>—</span></div>
+                <div class="info-row"><span>Rôle :</span><span>Admin</span></div>
+            </section>
+            <hr class="separateur sep2" />
+            <nav class="menu">
+                <a href="./index.html">Dashboard</a>
+                <a href="./pediatres-validation.html">Validation pédiatres</a>
+                <a href="./medecins.html" aria-current="page">Médecins</a>
+                <a href="./organisation.html">Organisation</a>
+                <a href="./rapports.html">Rapports</a>
+                <a href="./settings.html">Paramètres</a>
+                <a href="../../auth/login.html">Déconnexion</a>
+            </nav>
+            <div class="langue">
+                <span class="langue-icon"><img src="/frontend/static/world.png" class="emoji-icon" alt="Langue"></span>
+                <select aria-label="Langue">
+                    <option value="fr" selected>FR</option>
+                    <option value="ar">AR</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="form-card">
+                <div class="form-card__header">
+                    <div class="form-card__kpi">
+                        <span class="badge"><img src="/frontend/static/doctor.png" class="emoji-icon" alt="Doc"></span>
+                        <span class="form-card__title">Médecins de l'organisme</span>
+                    </div>
+                    <div class="form-card__subtitle">
+                        Liste complète, détails et invitations.
+                    </div>
+                </div>
+
+                <div class="genidoc-form">
+                    <div class="section-title">Inviter un pédiatre</div>
+
+                    <form action="#" method="post">
+                        <div class="form-grid">
+                            <div class="form-field form-field--full">
+                                <label for="invite_email">Email *</label>
+                                <input type="email" id="invite_email" name="invite_email" placeholder="ex: docteur@..."
+                                    required />
+                            </div>
+                            <div class="form-field">
+                                <label for="invite_nom">Nom</label>
+                                <input type="text" id="invite_nom" name="invite_nom" placeholder="Optionnel" />
+                            </div>
+                            <div class="form-field">
+                                <label for="invite_prenom">Prénom</label>
+                                <input type="text" id="invite_prenom" name="invite_prenom" placeholder="Optionnel" />
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="card__btn">Envoyer l'invitation</button>
+                        </div>
+                    </form>
+
+                    <div class="form-divider"></div>
+
+                    <div class="section-title">Liste des médecins</div>
+                    <div class="hint-box">
+                        Aucun médecin enregistré dans cet organisme pour le moment.
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

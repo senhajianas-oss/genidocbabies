@@ -1,0 +1,841 @@
+/* --- Sticky Header (Standard GeniDoc) --- */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 72px;
+  /* épaisseur fixe */
+  padding: 0 32px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(10, 56, 108, .09);
+  box-shadow: 0 1px 8px rgba(10, 56, 108, .07);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+.page-header__logo {
+  height: 240px;
+  /* logo large mais rogné par le header fix */
+  width: auto;
+  flex-shrink: 0;
+}
+
+.page-header__divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(10, 56, 108, .15);
+}
+
+.page-header__title {
+  font-weight: 800;
+  color: #0a386c;
+  font-size: 18px;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+/* Override old header tags if needed */
+header {
+  margin: 0;
+  padding: 0;
+}
+
+
+.verified_genidoc {
+  height: 100px;
+  width: 100px;
+}
+
+body {
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+}
+
+h1 {
+  margin-top: -215px;
+  margin-left: 500px;
+  color: #0a386c;
+  font-size: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+}
+
+#genidoc_id1 {
+  color: #0a386c;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.parametresgenidoc,
+.notificationsgenidoc,
+.aidegenidoc,
+.deconnexiongenidoc {
+  height: 20px;
+  width: 20px;
+  margin-top: 0;
+  margin-left: 0;
+  display: inline-block;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 200px;
+  list-style: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+main {
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+section {
+  text-align: left;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+.icon.user-icon,
+.icon.hospital-icon,
+.icon.calendar-icon {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+
+.separateur {
+  height: 0.5px;
+  width: 100%;
+  background-color: #132f8b;
+  margin-top: 30px;
+  border: none;
+}
+
+.langue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  vertical-align: middle;
+
+  margin-top: 20px;
+  margin-left: 10px;
+
+  padding: 6px 10px;
+  border: 1px solid #cfcfcf;
+  border-radius: 18px;
+  background: #ffffff;
+
+  font-size: 14px;
+  color: #333;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+}
+
+.langue .langue-icon,
+.langue img {
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  display: inline-block;
+}
+
+.langue select {
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cards-grid {
+  margin-top: 100px;
+  margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: repeat(2, 300px);
+  gap: 24px;
+  justify-content: center;
+  align-items: start;
+}
+
+@media (max-width: 700px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+.card {
+  margin: 0;
+  width: 260px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+
+  background-color: #fefefe;
+  border-radius: 0.8rem;
+  padding: 0.5rem;
+  color: #141417;
+}
+
+.card__hero {
+  background-color: #fef4e2;
+  border-radius: 0.5rem 0.5rem 0 0;
+  padding: 1.1rem;
+  font-size: 0.875rem;
+}
+
+.card__hero .card__job-title {
+  margin: 1.2rem 0 0.6rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding-right: 0;
+}
+
+.card__hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 700;
+}
+
+.card__footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: start;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  padding: 0.7rem;
+  row-gap: 1rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 340px) {
+  .card__footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+}
+
+.card__job-summary {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.card__btn {
+  width: 100%;
+  font-weight: 400;
+  border: none;
+  display: block;
+  cursor: pointer;
+  text-align: center;
+  padding: 0.5rem 1.25rem;
+  border-radius: 1rem;
+  background-color: #141417;
+  color: #fff;
+  font-size: 1rem;
+}
+
+@media (min-width: 340px) {
+  .card__btn {
+    width: max-content;
+  }
+}
+
+.dashboard {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.sidebar {
+  width: 320px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.info-section {
+  margin: 0;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+nav {
+  margin: 0;
+  gap: 18px;
+}
+
+.langue {
+  margin: 0;
+  align-self: flex-start;
+}
+
+.cards-grid {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .dashboard {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .cards-grid {
+    justify-content: start;
+  }
+}
+
+.info-section {
+  padding-top: 2px;
+}
+
+.menu {
+  margin-top: 200px;
+}
+
+.langue {
+  margin-top: 18px;
+}
+
+body {
+  padding-bottom: 60px;
+}
+
+.cards-grid {
+  margin-bottom: 60px;
+}
+
+.sep2 {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.card {
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.card__icon img {
+  width: 40px !important;
+  height: 40px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.card__kpi {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #d10f0f;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.card__hero--green {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+  background: #e9f9ef;
+}
+
+.card__hero--blue {
+  background: #e8f2ff;
+}
+
+.card__hero--red {
+  background: #ffe9e9;
+}
+
+.card__hero--gray {
+  background: #f1f3f5;
+}
+
+.card-1:hover {
+  box-shadow: 0 10px 20px rgba(34, 197, 94, 0.55);
+}
+
+.card-2:hover {
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.55);
+}
+
+.card-3:hover {
+  box-shadow: 0 10px 20px rgba(239, 68, 68, 0.6);
+}
+
+.card-4:hover {
+  box-shadow: 0 10px 20px rgba(100, 116, 139, 0.5);
+}
+
+.vaccination_genidoc {
+  background: rgb(57, 88, 190);
+  border: 1px solid rgb(80, 99, 207);
+  border-radius: 14px;
+  padding: 18px;
+  color: #fff;
+
+  box-shadow: 0 14px 30px rgba(57, 88, 190, 0.35);
+  /* ✅ correct */
+  position: relative;
+  overflow: hidden;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+/* petit effet "shine" */
+.vaccination_genidoc::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .18);
+  filter: blur(2px);
+}
+
+/* hover */
+.vaccination_genidoc:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(57, 88, 190, 0.45);
+}
+
+.vaccination_genidoc__title {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.vaccination_genidoc__desc {
+  margin: 0 0 14px;
+  font-size: 14px;
+  opacity: .9;
+}
+
+.vaccination_genidoc__link.pro-link {
+  /* base */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 11px 16px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 900;
+  letter-spacing: .2px;
+  color: rgba(255, 255, 255, .96);
+
+  /* glass + depth */
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, .16),
+      rgba(255, 255, 255, .08));
+  border: 1px solid rgba(255, 255, 255, .22);
+
+  box-shadow:
+    0 16px 30px rgba(0, 0, 0, .18),
+    inset 0 1px 0 rgba(255, 255, 255, .22),
+    inset 0 -1px 0 rgba(0, 0, 0, .20);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  transform: translateZ(0);
+  transition:
+    transform .22s cubic-bezier(.2, .9, .2, 1),
+    box-shadow .22s cubic-bezier(.2, .9, .2, 1),
+    border-color .22s ease,
+    filter .22s ease;
+}
+
+/* aurora layer (subtle color motion without animation) */
+.vaccination_genidoc__link.pro-link::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  z-index: 0;
+  opacity: .85;
+  background:
+    radial-gradient(120px 80px at 20% 20%, rgba(255, 255, 255, .25), transparent 60%),
+    radial-gradient(140px 90px at 80% 30%, rgba(34, 211, 238, .22), transparent 55%),
+    radial-gradient(160px 120px at 40% 120%, rgba(167, 139, 250, .20), transparent 60%);
+  filter: blur(6px);
+}
+
+/* sheen sweep (feels like crafted motion) */
+.vaccination_genidoc__link.pro-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  z-index: 0;
+  background: linear-gradient(115deg,
+      transparent 0%,
+      rgba(255, 255, 255, .22) 38%,
+      rgba(255, 255, 255, .06) 48%,
+      transparent 65%);
+  transform: translateX(-130%) skewX(-18deg);
+  transition: transform .55s cubic-bezier(.2, .9, .2, 1);
+  mix-blend-mode: screen;
+  opacity: .9;
+}
+
+.vaccination_genidoc__link.pro-link .pro-link__text,
+.vaccination_genidoc__link.pro-link .pro-link__icon {
+  position: relative;
+  z-index: 1;
+}
+
+.vaccination_genidoc__link.pro-link .pro-link__icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, .10);
+  border: 1px solid rgba(255, 255, 255, .16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .20);
+  transition: transform .22s cubic-bezier(.2, .9, .2, 1), background .22s ease;
+}
+
+/* hover = lift + sheen travels + icon nudges */
+.vaccination_genidoc__link.pro-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, .30);
+  box-shadow:
+    0 22px 46px rgba(0, 0, 0, .22),
+    inset 0 1px 0 rgba(255, 255, 255, .24),
+    inset 0 -1px 0 rgba(0, 0, 0, .22);
+  filter: saturate(1.06);
+}
+
+.vaccination_genidoc__link.pro-link:hover::after {
+  transform: translateX(120%) skewX(-18deg);
+}
+
+.vaccination_genidoc__link.pro-link:hover .pro-link__icon {
+  transform: translateX(2px) rotate(-2deg);
+  background: rgba(255, 255, 255, .14);
+}
+
+.vaccination_genidoc__link.pro-link:active {
+  transform: translateY(0px) scale(.985);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, .18),
+    inset 0 2px 10px rgba(0, 0, 0, .22);
+}
+
+.vaccination_genidoc__link.pro-link:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, .28);
+  outline-offset: 3px;
+}
+
+/* ======================= AJOUTS (SANS MODIFIER L'EXISTANT) ======================= */
+.articles_genidoc_obligatoires {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.suivi_staturo_psychomoteur_genidoc,
+.la_prevention_et_le_depistage_genidoc {
+  border-radius: 14px;
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .08);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.suivi_staturo_psychomoteur_genidoc {
+  background: #e9f9ef;
+  border: 1px solid rgba(34, 197, 94, .25);
+}
+
+.la_prevention_et_le_depistage_genidoc {
+  background: #fff7ed;
+  border: 1px solid rgba(245, 158, 11, .22);
+}
+
+.suivi_staturo_psychomoteur_genidoc::before,
+.la_prevention_et_le_depistage_genidoc::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .55);
+  filter: blur(2px);
+  opacity: .45;
+}
+
+.suivi_staturo_psychomoteur_genidoc:hover,
+.la_prevention_et_le_depistage_genidoc:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .12);
+}
+
+.mini-card__title {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 900;
+  color: #0a386c;
+}
+
+.mini-card__desc {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: #2d3748;
+  opacity: .9;
+}
+
+.mini-card__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mini-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(10, 56, 108, .18);
+  background: #0a386c;
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.mini-card__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .12);
+}
+
+.mini-card__btn--ghost {
+  background: rgba(255, 255, 255, .55);
+  color: #0a386c;
+}
+
+/* FIX : menu + langue qui tombent en bas (override sans toucher l'existant) */
+.sidebar .menu {
+  margin-top: 18px !important;
+  /* au lieu de 200px */
+}
+
+.sidebar .langue {
+  margin-top: 12px !important;
+  /* colle juste sous le menu */
+}
+
+/* ================== 3 cartes côte à côte (compact) ================== */
+.sidebar .articles_genidoc_obligatoires {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* 3 colonnes */
+  gap: 10px;
+  margin-top: 14px;
+  align-items: stretch;
+}
+
+/* on compacte UNIQUEMENT ces 3 articles */
+.sidebar .articles_genidoc_obligatoires>article {
+  padding: 12px !important;
+  border-radius: 12px;
+}
+
+/* titres + descriptions plus petits (uniquement dans la sidebar) */
+.sidebar .articles_genidoc_obligatoires .vaccination_genidoc__title,
+.sidebar .articles_genidoc_obligatoires .mini-card__title {
+  font-size: 14px !important;
+  margin: 0 0 4px !important;
+}
+
+.sidebar .articles_genidoc_obligatoires .vaccination_genidoc__desc,
+.sidebar .articles_genidoc_obligatoires .mini-card__desc {
+  font-size: 11px !important;
+  margin: 0 0 10px !important;
+}
+
+/* boutons plus petits */
+.sidebar .articles_genidoc_obligatoires .vaccination_genidoc__link.pro-link,
+.sidebar .articles_genidoc_obligatoires .mini-card__btn {
+  padding: 8px 10px !important;
+  border-radius: 10px !important;
+  font-size: 12px !important;
+}
+
+/* espace entre "Voir" et "Ajouter" */
+.sidebar .articles_genidoc_obligatoires .mini-card__actions {
+  gap: 6px !important;
+}
+
+/* icon ↗ plus compacte */
+.sidebar .articles_genidoc_obligatoires .vaccination_genidoc__link.pro-link .pro-link__icon {
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 8px !important;
+}
+
+/* responsive: si écran trop petit, on repasse à 2 puis 1 */
+@media (max-width: 520px) {
+  .sidebar .articles_genidoc_obligatoires {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 360px) {
+  .sidebar .articles_genidoc_obligatoires {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ====== 1) Supprimer le rond blanc en coin (les 3 cartes) ====== */
+.sidebar .articles_genidoc_obligatoires>article::before {
+  content: none !important;
+}
+
+/* ====== 2) Mettre "Vaccination" au même style que les 2 autres ====== */
+.sidebar .articles_genidoc_obligatoires .vaccination_genidoc {
+  background: #e8f2ff !important;
+  /* même esprit que tes mini-cards */
+  border: 1px solid rgba(10, 56, 108, .15) !important;
+  color: #0a386c !important;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .08) !important;
+  padding: 12px !important;
+  border-radius: 12px !important;
+  transform: none !important;
+}
+
+/* Hover uniforme (pas le gros shadow bleu d’avant) */
+.sidebar .articles_genidoc_obligatoires .vaccination_genidoc:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .12) !important;
+}
+
+/* Titre/desc vaccination comme les autres */
+.sidebar .articles_genidoc_obligatoires .vaccination_genidoc__title {
+  color: #0a386c !important;
+  font-size: 14px !important;
+  margin: 0 0 4px !important;
+}
+
+.sidebar .articles_genidoc_obligatoires .vaccination_genidoc__desc {
+  color: #2d3748 !important;
+  font-size: 11px !important;
+  margin: 0 0 10px !important;
+  opacity: .9 !important;
+}
+
+/* ====== 3) Bouton Vaccination (Voir ↗) comme les 2 autres ====== */
+.sidebar .articles_genidoc_obligatoires .vaccination_genidoc__link.pro-link {
+  background: #0a386c !important;
+  color: #fff !important;
+  border: 1px solid rgba(10, 56, 108, .18) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  padding: 10px 14px !important;
+  border-radius: 12px !important;
+  font-size: 12px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* Supprimer les effets glass/aurora/shine du bouton vaccination */
+.sidebar .articles_genidoc_obligatoires .vaccination_genidoc__link.pro-link::before,
+.sidebar .articles_genidoc_obligatoires .vaccination_genidoc__link.pro-link::after {
+  content: none !important;
+}
+
+/* ↗ simple (pas de carré blanc) */
+.sidebar .articles_genidoc_obligatoires .vaccination_genidoc__link.pro-link .pro-link__icon {
+  width: auto !important;
+  height: auto !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}

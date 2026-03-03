@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Pédiatre — GeniDoc</title>
+    <meta name="description"
+        content="Tableau de bord pédiatre GeniDoc : accédez à vos patients, dossiers et rendez-vous." />
+    <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+    <header class="page-header">
+        <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+        <div class="page-header__divider"></div>
+        <h1 class="page-header__title">Dashboard — Pédiatre</h1>
+    </header>
+
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <section class="info-section">
+                <div class="info-row">
+                    <span id="ped_nom_label">Nom :</span>
+                    <span id="ped_nom_value">—</span>
+                </div>
+                <div class="info-row">
+                    <span id="ped_role_label">Rôle :</span>
+                    <span>Pédiatre</span>
+                </div>
+                <div class="info-row">
+                    <span id="ped_statut_label">Statut :</span>
+                    <span id="ped_statut_value" class="status-pill status-pill--ok">Validé</span>
+                </div>
+            </section>
+
+            <hr class="separateur sep2" />
+
+            <nav class="menu">
+                <a href="./index.html" aria-current="page">Dashboard</a>
+                <a href="./patients.html">Mes patients</a>
+                <a href="./rendezvous.html">Rendez-vous</a>
+                <a href="./dossiers.html">Dossiers médicaux</a>
+                <a href="./profil.html">Mon profil</a>
+                <a href="./settings.html">Paramètres</a>
+                <a href="../../auth/login.html">Déconnexion</a>
+            </nav>
+
+            <div class="langue">
+                <span class="langue-icon"><img src="/frontend/static/world.png" class="emoji-icon" alt="Langue"></span>
+                <select aria-label="Langue">
+                    <option value="fr" selected>FR</option>
+                    <option value="ar">AR</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+
+            <div class="articles_genidoc_obligatoires">
+                <article class="vaccination_genidoc">
+                    <h3 class="vaccination_genidoc__title">Protocoles</h3>
+                    <p class="vaccination_genidoc__desc">Calendrier vaccinal &amp; conduites à tenir.</p>
+                    <a class="vaccination_genidoc__link pro-link" href="#">
+                        <span class="pro-link__text">Consulter</span>
+                        <span class="pro-link__icon"><img src="/frontend/static/quick.png" class="emoji-icon"
+                                alt="↗"></span>
+                    </a>
+                </article>
+
+                <article class="suivi_staturo_psychomoteur_genidoc">
+                    <h3 class="mini-card__title">Courbes</h3>
+                    <p class="mini-card__desc">Croissance &amp; percentiles.</p>
+                    <div class="mini-card__actions">
+                        <a class="mini-card__btn" href="#">Voir</a>
+                    </div>
+                </article>
+
+                <article class="la_prevention_et_le_depistage_genidoc">
+                    <h3 class="mini-card__title">Dépistage</h3>
+                    <p class="mini-card__desc">Bilans &amp; recommandations.</p>
+                    <div class="mini-card__actions">
+                        <a class="mini-card__btn" href="#">Voir</a>
+                    </div>
+                </article>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="form-card">
+                <div class="form-card__header">
+                    <div class="form-card__kpi">
+                        <span class="badge"><img src="/frontend/static/verified.png" class="emoji-icon"
+                                alt="Star"></span>
+                        <span class="form-card__title">Actions rapides</span>
+                    </div>
+                    <div class="form-card__subtitle">
+                        Accédez à vos patients, dossiers et rendez-vous du jour.
+                    </div>
+                </div>
+
+                <div class="genidoc-form">
+                    <!-- Mobile Access QR Code -->
+                    <div id="mobile-connect-box"
+                        style="background: #f0f7ff; padding: 20px; border-radius: 15px; margin-bottom: 25px; border: 1px solid #d0e7ff; display: flex; align-items: center; gap: 20px;">
+                        <div
+                            style="background: white; padding: 10px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                            <img id="dashboard-qr" src="" alt="Connect Phone"
+                                style="width: 100px; height: 100px; display: block;">
+                        </div>
+                        <div>
+                            <h3 style="margin: 0 0 5px 0; color: #0056b3;">Tester sur votre téléphone</h3>
+                            <p style="margin: 0; font-size: 0.9rem; color: #666;">Scannez ce code avec votre téléphone
+                                pour ouvrir GeniDoc Hayat et tester le scan NFC/QR en conditions réelles.</p>
+                        </div>
+                    </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const LOCAL_IP = "192.168.234.195";
+                            const link = "http://" + LOCAL_IP + ":5000/frontend/src/public/auth/login.html";
+                            document.getElementById('dashboard-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(link)}`;
+                        });
+                    </script>
+
+                    <div class="cards-grid">
+                        <a class="card card-2" href="./patients.html">
+                            <div class="card__hero card__hero--blue">
+                                <div class="card__hero-header">
+                                    <span>Patients</span>
+                                    <span><img src="/frontend/static/patient.png" class="emoji-icon" alt="Baby"></span>
+                                </div>
+                                <div class="card__job-title">Mes patients</div>
+                                <div class="card__desc">Liste, recherche &amp; fiches.</div>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__job-summary">
+                                    <span>Accéder</span><span class="badge"><img src="/frontend/static/enter.png"
+                                            class="emoji-icon" alt="→"></span>
+                                </div>
+                                <div class="card__btn">Ouvrir</div>
+                            </div>
+                        </a>
+
+                        <a class="card card-1" href="./rendezvous.html">
+                            <div class="card__hero card__hero--green">
+                                <div class="card__hero-header">
+                                    <span>RDV</span>
+                                    <span><img src="/frontend/static/schedule.png" class="emoji-icon" alt="RDV"></span>
+                                </div>
+                                <div class="card__job-title">Rendez-vous</div>
+                                <div class="card__desc">Agenda &amp; consultations.</div>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__job-summary">
+                                    <span>Gérer</span><span class="badge"><img src="/frontend/static/enter.png"
+                                            class="emoji-icon" alt="→"></span>
+                                </div>
+                                <div class="card__btn">Ouvrir</div>
+                            </div>
+                        </a>
+
+                        <a class="card card-3" href="./dossiers.html">
+                            <div class="card__hero card__hero--red">
+                                <div class="card__hero-header">
+                                    <span>Dossiers</span>
+                                    <span><img src="/frontend/static/list.png" class="emoji-icon" alt="Dossier"></span>
+                                </div>
+                                <div class="card__job-title">Dossiers médicaux</div>
+                                <div class="card__desc">Consultations &amp; ordonnances.</div>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__job-summary">
+                                    <span>Accéder</span><span class="badge"><img src="/frontend/static/enter.png"
+                                            class="emoji-icon" alt="→"></span>
+                                </div>
+                                <div class="card__btn">Ouvrir</div>
+                            </div>
+                        </a>
+
+                        <a class="card card-4" href="./profil.html">
+                            <div class="card__hero card__hero--gray">
+                                <div class="card__hero-header">
+                                    <span>Profil</span>
+                                    <span><img src="/frontend/static/user.png" class="emoji-icon" alt="User"></span>
+                                </div>
+                                <div class="card__job-title">Mon profil</div>
+                                <div class="card__desc">Infos pro &amp; documents.</div>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__job-summary">
+                                    <span>Modifier</span><span class="badge"><img src="/frontend/static/enter.png"
+                                            class="emoji-icon" alt="→"></span>
+                                </div>
+                                <div class="card__btn">Ouvrir</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <hr class="separateur sep2" />
+
+                    <div class="hint-box">
+                        Astuce : pour accéder au dossier d'un patient, demandez le code OTP au tuteur légal ou scannez
+                        la carte NFC de l'enfant.
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <style>
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 900;
+            border: 1px solid rgba(10, 56, 108, 0.15);
+        }
+
+        .status-pill--ok {
+            background: #e9f9ef;
+            color: #166534;
+            border-color: rgba(34, 197, 94, 0.25);
+        }
+
+        .status-pill--pending {
+            background: #fff7ed;
+            color: #92400e;
+            border-color: rgba(245, 158, 11, 0.25);
+        }
+    </style>
+</body>
+
+</html>

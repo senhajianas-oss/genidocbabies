@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding Pédiatre - Étape 2</title>
+  <link rel="stylesheet" href="../tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Pédiatre — Étape 2/3</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row">
+          <span id="genidoc_id1">Rôle :</span>
+          <span>Pédiatre</span>
+        </div>
+        <div class="info-row">
+          <span id="genidoc_id1">Étape :</span>
+          <span>Documents</span>
+        </div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./step1-profil.html">Étape 1 — Profil</a>
+        <a href="#" aria-current="page">Étape 2 — Documents</a>
+        <a href="#" class="disabled-link" tabindex="-1" aria-disabled="true">Étape 3 — Statut</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon">🌐</span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <span class="badge">2</span>
+            <span class="form-card__title">Documents professionnels</span>
+          </div>
+          <div class="form-card__subtitle">
+            Ajoute les documents requis pour valider ton profil.
+          </div>
+        </div>
+
+        <form class="genidoc-form" action="#" method="post" enctype="multipart/form-data" novalidate>
+          <div class="section-title">Justificatifs</div>
+
+          <div class="upload-box">
+            <div class="upload-box__title">Carte professionnelle / Attestation d’inscription *</div>
+            <div class="upload-box__desc">PDF, JPG, PNG.</div>
+            <input type="file" name="doc_carte_pro" accept=".pdf,.jpg,.jpeg,.png" required />
+          </div>
+
+          <div class="upload-box" style="margin-top: 12px;">
+            <div class="upload-box__title">Document ordre / licence (optionnel)</div>
+            <div class="upload-box__desc">PDF, JPG, PNG.</div>
+            <input type="file" name="doc_ordre" accept=".pdf,.jpg,.jpeg,.png" />
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="section-title">Signature & cachet (si tu génères des documents)</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="signature_file">Signature (optionnel)</label>
+              <input type="file" id="signature_file" name="signature_file" accept=".jpg,.jpeg,.png" />
+            </div>
+
+            <div class="form-field">
+              <label for="cachet_file">Cachet (optionnel)</label>
+              <input type="file" id="cachet_file" name="cachet_file" accept=".jpg,.jpeg,.png" />
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="checkbox-row checkbox-row--soft">
+            <input type="checkbox" id="docs_later" name="docs_later" />
+            <label for="docs_later">
+              Je fournirai certains documents plus tard (mon accès pourra être limité)
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <a class="btn-secondary" href="./step1-profile.html">Retour</a>
+            <button type="submit" class="card__btn">Soumettre et continuer</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/shared.js"></script>
+  <script>
+    document.querySelector('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const btn = form.querySelector('button');
+
+      const formData = new FormData();
+      const files = form.querySelectorAll('input[type="file"]');
+      files.forEach(input => {
+        if (input.files[0]) {
+          formData.append('documents', input.files[0]);
+        }
+      });
+
+      // Si aucun document n'est fourni mais que la case "plus tard" est cochée
+      const docsLater = document.getElementById('docs_later').checked;
+      if (!formData.has('documents') && !docsLater) {
+        alert('Veuillez fournir au moins un document ou cocher la case "fournir plus tard".');
+        return;
+      }
+
+      btn.textContent = 'Téléchargement...'; btn.disabled = true;
+      try {
+        await window.genidocApi.pediatre.step2(formData);
+        window.location.href = './step3-status.html';
+      } catch (err) {
+        alert('Erreur : ' + err.message);
+      } finally {
+        btn.textContent = "Soumettre et continuer"; btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Onboarding Tuteur - Étape 1</title>
+    <link rel="stylesheet" href="/frontend/src/public/onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+    <header class="page-header">
+        <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+        <div class="page-header__divider"></div>
+        <h1 class="page-header__title">Tuteur — Étape 1/3</h1>
+    </header>
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <section class="info-section">
+                <div class="info-row">
+                    <span id="genidoc_id1">Rôle :</span>
+                    <span>Tuteur</span>
+                </div>
+
+                <div class="info-row">
+                    <span id="genidoc_id1">Statut :</span>
+                    <span>Profil à compléter</span>
+                </div>
+            </section>
+
+            <hr class="separateur sep2" />
+
+            <nav class="menu">
+                <a href="step1-profile.html" aria-current="page">Étape 1 — Profil</a>
+                <a href="step2-profil.html" class="disabled-link" tabindex="-1" aria-disabled="true">Étape 2 — Enfant &
+                    carnet</a>
+                <a href="step3-profil.html" class="disabled-link" tabindex="-1" aria-disabled="true">Étape 3 —
+                    Résumé</a>
+            </nav>
+
+            <div class="langue">
+                <span class="langue-icon"><img src="/frontend/static/world.png" alt="" class="genidoc_world"></span>
+                <select aria-label="Langue">
+                    <option value="fr" selected>FR</option>
+                    <option value="ar">AR</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+        </aside>
+
+        <!-- Content -->
+        <main class="content">
+            <section class="form-card">
+                <div class="form-card__header">
+                    <div class="form-card__kpi">
+                        <span class="badge">1</span>
+                        <span class="form-card__title">Informations du tuteur</span>
+                    </div>
+                    <div class="form-card__subtitle">
+                        Remplis les infos suivantes pour continuer.
+                    </div>
+                </div>
+
+                <form class="genidoc-form" action="#" method="post" novalidate>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="genidoc_tel">Téléphone *</label>
+                            <input type="tel" id="genidoc_tel" name="genidoc_tel" placeholder="Ex: 06XXXXXXXX"
+                                required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="genidoc_cin">CIN / Identité</label>
+                            <input type="text" id="genidoc_cin" name="genidoc_cin" placeholder="Ex: AB123456" />
+                        </div>
+
+                        <div class="form-field form-field--full">
+                            <label for="genidoc_adresse">Adresse</label>
+                            <input type="text" id="genidoc_adresse" name="genidoc_adresse"
+                                placeholder="Rue, quartier..." />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="genidoc_ville">Ville *</label>
+                            <input type="text" id="genidoc_ville" name="genidoc_ville" placeholder="Ex: Casablanca"
+                                required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="genidoc_profession">Profession</label>
+                            <input type="text" id="genidoc_profession" name="genidoc_profession"
+                                placeholder="Optionnel" />
+                        </div>
+                    </div>
+
+                    <div class="form-divider"></div>
+
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="genidoc_consent" name="genidoc_consent" required />
+                        <label for="genidoc_consent">
+                            J’accepte les conditions et la politique de confidentialité *
+                        </label>
+                    </div>
+
+    </div>
+    <script src="../../js/api.js"></script>
+    <script src="../../js/shared.js"></script>
+    <script>
+        document.querySelector('.card__btn').addEventListener('click', async (e) => {
+            const formData = {
+                telephone: document.getElementById('genidoc_tel').value,
+                cin: document.getElementById('genidoc_cin').value,
+                adresse: document.getElementById('genidoc_adresse').value,
+                ville: document.getElementById('genidoc_ville').value,
+                profession: document.getElementById('genidoc_profession').value
+            };
+
+            const btn = e.target;
+            btn.textContent = 'Enregistrement...'; btn.disabled = true;
+            try {
+                await window.genidocApi.tuteur.step1(formData);
+                window.location.href = './step2-profil.html';
+            } catch (err) {
+                alert('Erreur : ' + err.message);
+            } finally {
+                btn.textContent = "Enregistrer et continuer"; btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

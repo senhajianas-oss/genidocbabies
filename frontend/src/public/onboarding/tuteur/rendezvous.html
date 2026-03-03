@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carnet & scans</title>
+  <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Tuteur — Carnet & scans</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row"><span id="genidoc_id1">Rôle :</span><span>Tuteur</span></div>
+        <div class="info-row"><span id="genidoc_id1">Scans :</span><span>—</span></div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./index.html">Dashboard</a>
+        <a href="./enfants.html">Mes enfants</a>
+        <a href="./carnet-upload.html" aria-current="page">Carnet & scans</a>
+        <a href="./rendezvous.html">Rendez-vous</a>
+        <a href="./profil.html">Mon profil</a>
+        <a href="./settings.html">Paramètres</a>
+        <a href="../../auth/login.html">Déconnexion</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon">🌐</span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <span class="badge">📄</span>
+            <span class="form-card__title">Uploader carnet</span>
+          </div>
+          <div class="form-card__subtitle">Choisis l’enfant puis ajoute les fichiers.</div>
+        </div>
+
+        <form class="genidoc-form" action="#" method="post" enctype="multipart/form-data" novalidate>
+          <div class="section-title">Choisir l’enfant</div>
+
+          <div class="form-grid">
+            <div class="form-field form-field--full">
+              <label for="enfant_id">Enfant *</label>
+              <select id="enfant_id" name="enfant_id" required>
+                <option value="" selected disabled>Choisir</option>
+                <option value="1">Enfant #1</option>
+                <option value="2">Enfant #2</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="upload-box">
+            <div class="upload-box__title">Scan du carnet *</div>
+            <div class="upload-box__desc">PDF, JPG, PNG. Plusieurs fichiers autorisés.</div>
+            <input type="file" name="carnet_files" accept=".pdf,.jpg,.jpeg,.png" multiple required />
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="hint-box">
+            Conseil : photos nettes, pages bien cadrées, pas d’ombre. Tu peux uploader en plusieurs fois.
+          </div>
+
+          <div class="form-actions">
+            <a class="btn-secondary" href="./enfants.html">Retour</a>
+            <button type="submit" class="card__btn">Envoyer</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

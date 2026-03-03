@@ -1,0 +1,13 @@
+version: 1
+frontend:
+  phases:
+    # No build steps needed for vanilla HTML/JS
+    build:
+      commands:
+        - echo "Vanilla JS project - skipping build"
+  artifacts:
+    baseDirectory: frontend/src/public
+    files:
+      - '**/*'
+  cache:
+    paths: []

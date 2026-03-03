@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding Pédiatre - Étape 3</title>
+  <link rel="stylesheet" href="../tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Pédiatre — Étape 3/3</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row">
+          <span id="genidoc_id1">Rôle :</span>
+          <span>Pédiatre</span>
+        </div>
+        <div class="info-row">
+          <span id="genidoc_id1">Étape :</span>
+          <span>Statut</span>
+        </div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./step1-profil.html">Étape 1 — Profil</a>
+        <a href="./step2-documents.html">Étape 2 — Documents</a>
+        <a href="#" aria-current="page">Étape 3 — Statut</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon">🌐</span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <span class="badge">3</span>
+            <span class="form-card__title">Finalisation</span>
+          </div>
+          <div class="form-card__subtitle">
+            Ton profil est enregistré. Selon les règles de l’organisme, une validation peut être nécessaire.
+          </div>
+        </div>
+
+        <div class="genidoc-form">
+          <div class="section-title">Statut du compte</div>
+
+          <div class="hint-box">
+            Statut actuel :
+            <span class="status-pill status-pill--pending">En attente de validation</span>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="section-title">Prochaines étapes</div>
+
+          <div class="hint-box">
+            Si une validation est requise, un admin vérifiera tes documents. Dès validation, tu auras accès complet.
+          </div>
+
+          <div class="form-actions">
+            <a class="btn-secondary" href="./step2-documents.html">Retour</a>
+            <a class="card__btn" href="../../dashboard/pediatre/index.html">
+              Accéder au Dashboard
+            </a>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="hint-box">
+            Si ton organisme n’exige pas de validation, remplace le statut par
+            <span class="status-pill status-pill--ok">Validé</span>
+            et active le bouton dashboard.
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/shared.js"></script>
+  <script>
+    document.querySelector('.card__btn').addEventListener('click', async (e) => {
+      e.preventDefault();
+      const btn = e.target;
+
+      btn.textContent = 'Activation...'; btn.disabled = true;
+      try {
+        await window.genidocApi.pediatre.step3();
+        window.location.href = '../../dashboard/pediatre/index.html';
+      } catch (err) {
+        alert('Erreur : ' + err.message);
+      } finally {
+        btn.textContent = "Accéder au Dashboard"; btn.disabled = false;
+      }
+    });
+
+    // Check status if auto-validated
+    async function checkStatus() {
+      try {
+        const data = await window.genidocApi.getMe();
+        // On peut enrichir ici si besoin
+      } catch (e) { }
+    }
+    document.addEventListener('DOMContentLoaded', checkStatus);
+  </script>
+  <style>
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      border: 1px solid rgba(10, 56, 108, 0.15);
+      margin-left: 8px;
+    }
+
+    .status-pill--ok {
+      background: #e9f9ef;
+      color: #166534;
+      border-color: rgba(34, 197, 94, 0.25);
+    }
+
+    .status-pill--pending {
+      background: #fff7ed;
+      color: #92400e;
+      border-color: rgba(245, 158, 11, 0.25);
+    }
+  </style>
+</body>
+
+</html>

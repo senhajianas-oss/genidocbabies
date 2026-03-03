@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding Admin - Étape 3</title>
+  <link rel="stylesheet" href="../tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Admin — Étape 3/3</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row">
+          <span id="genidoc_id1">Rôle :</span>
+          <span>Admin</span>
+        </div>
+        <div class="info-row">
+          <span id="genidoc_id1">Étape :</span>
+          <span>Gestion médecins</span>
+        </div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./step1-organisation.html">Étape 1 — Organisation</a>
+        <a href="./step2-documents-regles.html">Étape 2 — Règles & docs</a>
+        <a href="#" aria-current="page">Étape 3 — Gestion médecins</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon"><img src="/frontend/static/world.png" alt=""></span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <span class="badge">3</span>
+            <span class="form-card__title">Finalisation & médecins</span>
+          </div>
+          <div class="form-card__subtitle">
+            Tu peux maintenant inviter des pédiatres ou valider ceux déjà inscrits.
+          </div>
+        </div>
+
+        <div class="genidoc-form">
+          <div class="section-title">Actions rapides</div>
+
+          <div class="cards-grid scenario-grid">
+            <a class="card card-2 scenario-card" href="../../dashboard/admin/medecins.html">
+              <div class="card__hero card__hero--blue">
+                <div class="card__hero-header">
+                  <span>Module</span>
+                  <span><img src="/frontend/static/list.png" alt="" class="genidoc_list"></span>
+                </div>
+                <div class="card__job-title">Liste des médecins</div>
+                <div class="card__desc">Voir tous les médecins de l’organisme.</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary">
+                  <span>Accéder</span><span class="badge">→</span>
+                </div>
+                <div class="card__btn">Ouvrir</div>
+              </div>
+            </a>
+
+            <a class="card card-1 scenario-card" href="../../dashboard/admin/pediatres-validation.html">
+              <div class="card__hero card__hero--green">
+                <div class="card__hero-header">
+                  <span>Validation</span>
+                  <span><img src="/frontend/static/check.png" alt="" class="genidoc_check"></span>
+                </div>
+                <div class="card__job-title">Valider les pédiatres</div>
+                <div class="card__desc">Approuver ou refuser les demandes.</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary">
+                  <span>Accéder</span><span class="badge">→</span>
+                </div>
+                <div class="card__btn">Ouvrir</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="section-title">Inviter un pédiatre</div>
+
+          <form action="#" method="post" class="invite-box">
+            <div class="form-grid">
+              <div class="form-field form-field--full">
+                <label for="invite_email">Email du pédiatre *</label>
+                <input type="email" id="invite_email" name="invite_email" placeholder="Ex: docteur@..." required />
+              </div>
+
+              <div class="form-field">
+                <label for="invite_nom">Nom</label>
+                <input type="text" id="invite_nom" name="invite_nom" placeholder="Optionnel" />
+              </div>
+
+              <div class="form-field">
+                <label for="invite_prenom">Prénom</label>
+                <input type="text" id="invite_prenom" name="invite_prenom" placeholder="Optionnel" />
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <a class="btn-secondary" href="./step2-documents-regles.html">Retour</a>
+              <button type="submit" class="card__btn">Envoyer l’invitation</button>
+            </div>
+          </form>
+
+          <div class="form-divider"></div>
+
+          <div class="hint-box">
+            Une fois l’onboarding terminé, tu accèdes au dashboard admin complet.
+          </div>
+
+          <div class="form-actions">
+            <a class="card__btn" href="../../dashboard/admin/index.html">Accéder au Dashboard Admin</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  </div>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/shared.js"></script>
+  <script>
+    // Invitation logic
+    document.querySelector('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('invite_email').value;
+      const nom = document.getElementById('invite_nom').value;
+      const prenom = document.getElementById('invite_prenom').value;
+      const btn = e.target.querySelector('button');
+
+      btn.textContent = 'Envoi...'; btn.disabled = true;
+      try {
+        await window.genidocApi.admin.sendInvitation({ email, nom, prenom });
+        alert('Invitation envoyée !');
+      } catch (err) {
+        alert('Erreur : ' + err.message);
+      } finally {
+        btn.textContent = "Envoyer l’invitation"; btn.disabled = false;
+      }
+    });
+
+    // Activation logic
+    document.querySelector('.form-actions:last-child .card__btn').addEventListener('click', async (e) => {
+      e.preventDefault();
+      const btn = e.target;
+
+      btn.textContent = 'Activation...'; btn.disabled = true;
+      try {
+        await window.genidocApi.admin.step3();
+        window.location.href = "../../dashboard/admin/index.html";
+      } catch (err) {
+        alert('Erreur : ' + err.message);
+      } finally {
+        btn.textContent = "Accéder au Dashboard Admin"; btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+
+</html>

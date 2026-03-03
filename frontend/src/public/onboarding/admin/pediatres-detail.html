@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Détail pédiatre</title>
+  <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Admin — Détail pédiatre</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row"><span id="genidoc_id1">Rôle :</span><span>Admin</span></div>
+        <div class="info-row"><span id="genidoc_id1">Module :</span><span>Validation</span></div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./index.html">Dashboard</a>
+        <a href="./pediatres-validation.html">Validation pédiatres</a>
+        <a href="./medecins.html">Médecins</a>
+        <a href="./organisation.html">Organisation</a>
+        <a href="./rapports.html">Rapports</a>
+        <a href="./settings.html">Paramètres</a>
+        <a href="../../auth/login.html">Déconnexion</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon">🌐</span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <span class="badge">👨‍⚕️</span>
+            <span class="form-card__title">Profil & documents</span>
+          </div>
+          <div class="form-card__subtitle">Vérifie puis approuve / refuse.</div>
+        </div>
+
+        <div class="genidoc-form">
+          <div class="section-title">Informations</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label>Nom</label>
+              <input type="text" value="—" disabled />
+            </div>
+            <div class="form-field">
+              <label>Prénom</label>
+              <input type="text" value="—" disabled />
+            </div>
+            <div class="form-field">
+              <label>Email</label>
+              <input type="text" value="—" disabled />
+            </div>
+            <div class="form-field">
+              <label>N° ordre</label>
+              <input type="text" value="—" disabled />
+            </div>
+            <div class="form-field form-field--full">
+              <label>Structure</label>
+              <input type="text" value="—" disabled />
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="section-title">Documents</div>
+
+          <div class="cards-grid">
+            <div class="card card-2">
+              <div class="card__hero card__hero--blue">
+                <div class="card__hero-header"><span>Document</span><span>📄</span></div>
+                <div class="card__job-title">Carte pro</div>
+                <div class="card__desc">Statut: reçu</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary"><span>Voir</span><span class="badge">→</span></div>
+                <button class="card__btn" type="button">Ouvrir</button>
+              </div>
+            </div>
+
+            <div class="card card-4">
+              <div class="card__hero card__hero--gray">
+                <div class="card__hero-header"><span>Document</span><span>📄</span></div>
+                <div class="card__job-title">Ordre</div>
+                <div class="card__desc">Statut: optionnel</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary"><span>Voir</span><span class="badge">→</span></div>
+                <button class="card__btn" type="button">Ouvrir</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="section-title">Décision</div>
+
+          <div class="form-actions" style="justify-content:space-between;">
+            <a class="btn-secondary" href="./pediatres-validation.html">Retour</a>
+            <div style="display:flex; gap:10px;">
+              <button type="button" class="btn-secondary">Refuser</button>
+              <button type="button" class="card__btn">Approuver</button>
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="hint-box">
+            En cas de refus, ajoute une raison (message) côté backend / modal.
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

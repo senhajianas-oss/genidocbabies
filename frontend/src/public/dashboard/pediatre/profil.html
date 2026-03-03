@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon profil — Pédiatre GeniDoc</title>
+    <meta name="description" content="Profil professionnel du pédiatre GeniDoc." />
+    <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+    <header class="page-header">
+        <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+        <div class="page-header__divider"></div>
+        <h1 class="page-header__title">Pédiatre — Mon profil</h1>
+    </header>
+
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <section class="info-section">
+                <div class="info-row">
+                    <span>Nom :</span>
+                    <span>—</span>
+                </div>
+                <div class="info-row">
+                    <span>Rôle :</span>
+                    <span>Pédiatre</span>
+                </div>
+            </section>
+
+            <hr class="separateur sep2" />
+
+            <nav class="menu">
+                <a href="./index.html">Dashboard</a>
+                <a href="./patients.html">Mes patients</a>
+                <a href="./rendezvous.html">Rendez-vous</a>
+                <a href="./dossiers.html">Dossiers médicaux</a>
+                <a href="./profil.html" aria-current="page">Mon profil</a>
+                <a href="./settings.html">Paramètres</a>
+                <a href="../../auth/login.html">Déconnexion</a>
+            </nav>
+
+            <div class="langue">
+                <span class="langue-icon">🌐</span>
+                <select aria-label="Langue">
+                    <option value="fr" selected>FR</option>
+                    <option value="ar">AR</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="form-card">
+                <div class="form-card__header">
+                    <div class="form-card__kpi">
+                        <span class="badge">👤</span>
+                        <span class="form-card__title">Informations professionnelles</span>
+                    </div>
+                    <div class="form-card__subtitle">
+                        Modifiez vos informations de profil et vos documents.
+                    </div>
+                </div>
+
+                <form class="genidoc-form" action="#" method="post" novalidate>
+                    <div class="section-title">Identité professionnelle</div>
+
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="numero_ordre">Numéro d'ordre *</label>
+                            <input type="text" id="numero_ordre" name="numero_ordre" placeholder="Ex: 12345" required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="telephone_pro">Téléphone pro *</label>
+                            <input type="tel" id="telephone_pro" name="telephone_pro" placeholder="Ex: 06XXXXXXXX"
+                                required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="specialite">Spécialité</label>
+                            <input type="text" id="specialite" name="specialite" placeholder="Optionnel" />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="type_structure">Structure *</label>
+                            <select id="type_structure" name="type_structure" required>
+                                <option value="" selected disabled>Choisir</option>
+                                <option value="CABINET">Cabinet</option>
+                                <option value="HOPITAL">Hôpital</option>
+                                <option value="CLINIQUE">Clinique</option>
+                                <option value="CENTRE">Centre de santé</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field form-field--full">
+                            <label for="nom_structure">Nom de la structure</label>
+                            <input type="text" id="nom_structure" name="nom_structure" placeholder="Optionnel" />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="ville">Ville *</label>
+                            <input type="text" id="ville" name="ville" placeholder="Ex: Casablanca" required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="email_pro">Email pro</label>
+                            <input type="email" id="email_pro" name="email_pro" placeholder="Optionnel" />
+                        </div>
+
+                        <div class="form-field form-field--full">
+                            <label for="adresse">Adresse</label>
+                            <input type="text" id="adresse" name="adresse" placeholder="Rue, quartier..." />
+                        </div>
+                    </div>
+
+                    <div class="form-divider"></div>
+
+                    <div class="section-title">Documents</div>
+
+                    <div class="upload-box">
+                        <div class="upload-box__title">Carte professionnelle / Attestation</div>
+                        <div class="upload-box__desc">PDF, JPG, PNG — remplace le document existant.</div>
+                        <input type="file" name="doc_carte_pro" accept=".pdf,.jpg,.jpeg,.png" />
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="card__btn">Enregistrer les modifications</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

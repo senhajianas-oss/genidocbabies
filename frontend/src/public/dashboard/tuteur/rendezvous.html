@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rendez-vous — Tuteur GeniDoc</title>
+    <meta name="description" content="Gestion des rendez-vous médicaux — Tuteur GeniDoc." />
+    <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+    <header class="page-header">
+        <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+        <div class="page-header__divider"></div>
+        <h1 class="page-header__title">Tuteur — Rendez-vous</h1>
+    </header>
+
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <section class="info-section">
+                <div class="info-row"><span>Nom :</span><span>—</span></div>
+                <div class="info-row"><span>Rôle :</span><span>Tuteur</span></div>
+            </section>
+            <hr class="separateur sep2" />
+            <nav class="menu">
+                <a href="./index.html">Dashboard</a>
+                <a href="./enfants.html">Mes enfants</a>
+                <a href="./carnet-upload.html">Carnet &amp; scans</a>
+                <a href="./rendezvous.html" aria-current="page">Rendez-vous</a>
+                <a href="./profil.html">Mon profil</a>
+                <a href="./settings.html">Paramètres</a>
+                <a href="../../auth/login.html">Déconnexion</a>
+            </nav>
+            <div class="langue">
+                <span class="langue-icon">🌐</span>
+                <select aria-label="Langue">
+                    <option value="fr" selected>FR</option>
+                    <option value="ar">AR</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="form-card">
+                <div class="form-card__header">
+                    <div class="form-card__kpi">
+                        <span class="badge">🗓️</span>
+                        <span class="form-card__title">Rendez-vous</span>
+                    </div>
+                    <div class="form-card__subtitle">
+                        Créez et gérez les rendez-vous médicaux de vos enfants.
+                    </div>
+                </div>
+
+                <div class="genidoc-form">
+                    <div class="section-title">Prochains rendez-vous</div>
+
+                    <div class="hint-box">
+                        Aucun rendez-vous planifié. Votre pédiatre peut créer des rendez-vous depuis son dashboard.
+                    </div>
+
+                    <div class="form-divider"></div>
+
+                    <div class="section-title">Historique</div>
+
+                    <div class="hint-box">Aucun rendez-vous passé enregistré.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

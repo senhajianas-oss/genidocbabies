@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validation pédiatres — Admin GeniDoc</title>
+    <meta name="description" content="Validation et gestion des demandes de pédiatres — Admin GeniDoc." />
+    <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+    <header class="page-header">
+        <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+        <div class="page-header__divider"></div>
+        <h1 class="page-header__title">Admin — Validation pédiatres</h1>
+    </header>
+
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <section class="info-section">
+                <div class="info-row"><span>Organisation :</span><span>—</span></div>
+                <div class="info-row"><span>Rôle :</span><span>Admin</span></div>
+            </section>
+            <hr class="separateur sep2" />
+            <nav class="menu">
+                <a href="./index.html">Dashboard</a>
+                <a href="./pediatres-validation.html" aria-current="page">Validation pédiatres</a>
+                <a href="./medecins.html">Médecins</a>
+                <a href="./organisation.html">Organisation</a>
+                <a href="./rapports.html">Rapports</a>
+                <a href="./settings.html">Paramètres</a>
+                <a href="../../auth/login.html">Déconnexion</a>
+            </nav>
+            <div class="langue">
+                <span class="langue-icon">🌐</span>
+                <select aria-label="Langue">
+                    <option value="fr" selected>FR</option>
+                    <option value="ar">AR</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="form-card">
+                <div class="form-card__header">
+                    <div class="form-card__kpi">
+                        <span class="badge">✅</span>
+                        <span class="form-card__title">Demandes de pédiatres</span>
+                    </div>
+                    <div class="form-card__subtitle">
+                        Approuvez ou refusez les demandes d'accès des pédiatres à votre organisme.
+                    </div>
+                </div>
+
+                <div class="genidoc-form">
+                    <div class="section-title">Demandes en attente</div>
+                    <div class="hint-box">
+                        Aucune demande en attente pour le moment. Les pédiatres qui s'inscrivent et rejoignent votre
+                        organisme apparaîtront ici.
+                    </div>
+
+                    <div class="form-divider"></div>
+
+                    <div class="section-title">Pédiatres validés</div>
+                    <div class="hint-box">
+                        Aucun pédiatre validé pour le moment.
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

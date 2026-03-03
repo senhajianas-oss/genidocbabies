@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding Admin - Étape 2</title>
+  <link rel="stylesheet" href="../tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Admin — Étape 2/3</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row">
+          <span id="genidoc_id1">Rôle :</span>
+          <span>Admin</span>
+        </div>
+        <div class="info-row">
+          <span id="genidoc_id1">Étape :</span>
+          <span>Règles & documents</span>
+        </div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./step1-organisation.html">Étape 1 — Organisation</a>
+        <a href="#" aria-current="page">Étape 2 — Règles & docs</a>
+        <a href="#" class="disabled-link" tabindex="-1" aria-disabled="true">Étape 3 — Gestion médecins</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon">🌐</span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <span class="badge">2</span>
+            <span class="form-card__title">Règles & documents</span>
+          </div>
+          <div class="form-card__subtitle">
+            Définis les règles de validation des médecins et ajoute les documents de l’organisme.
+          </div>
+        </div>
+
+        <form class="genidoc-form" action="#" method="post" enctype="multipart/form-data" novalidate>
+          <div class="section-title">Règles de sécurité</div>
+
+          <div class="hint-box">
+            Ces règles contrôlent l’accès des pédiatres à l’organisme et la validation des documents.
+          </div>
+
+          <div class="form-grid" style="margin-top: 12px;">
+            <div class="form-field form-field--full">
+              <label for="regle_validation">Validation des pédiatres *</label>
+              <select id="regle_validation" name="regle_validation" required>
+                <option value="" selected disabled>Choisir</option>
+                <option value="OBLIGATOIRE">Obligatoire (admin valide avant accès)</option>
+                <option value="AUTO">Automatique (accès immédiat)</option>
+              </select>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label for="domaines_email">Domaines email autorisés (optionnel)</label>
+              <input type="text" id="domaines_email" name="domaines_email" placeholder="Ex: clinique.ma, hopital.ma" />
+            </div>
+
+            <div class="form-field form-field--full">
+              <label for="note_interne">Note interne (optionnel)</label>
+              <input type="text" id="note_interne" name="note_interne"
+                placeholder="Ex: vérifier numéro d’ordre et carte pro" />
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="section-title">Documents organisme</div>
+
+          <div class="upload-box">
+            <div class="upload-box__title">Agrément / Autorisation (optionnel)</div>
+            <div class="upload-box__desc">PDF, JPG, PNG.</div>
+            <input type="file" name="doc_agrement" accept=".pdf,.jpg,.jpeg,.png" />
+          </div>
+
+          <div class="upload-box" style="margin-top: 12px;">
+            <div class="upload-box__title">Cachet / Logo officiel (optionnel)</div>
+            <div class="upload-box__desc">PNG/JPG.</div>
+            <input type="file" name="doc_cachet" accept=".jpg,.jpeg,.png" />
+          </div>
+
+          <div class="form-actions">
+            <a class="btn-secondary" href="./step1-organisation.html">Retour</a>
+            <button type="submit" class="card__btn">Enregistrer et continuer</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/shared.js"></script>
+  <script>
+    document.querySelector('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const btn = form.querySelector('button');
+
+      const formData = new FormData();
+      const files = form.querySelectorAll('input[type="file"]');
+      files.forEach(input => {
+        if (input.files[0]) {
+          formData.append('documents', input.files[0]);
+        }
+      });
+
+      btn.textContent = 'Enregistrement...'; btn.disabled = true;
+      try {
+        await window.genidocApi.admin.step2(formData);
+        window.location.href = "step3-gestion-medecins.html";
+      } catch (err) {
+        alert('Erreur : ' + err.message);
+      } finally {
+        btn.textContent = "Enregistrer et continuer"; btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+
+</html>

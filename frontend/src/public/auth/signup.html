@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Inscription à GeniDoc Babies – Plateforme de suivi pédiatrique." />
+  <title>Inscription – GeniDoc Babies</title>
+  <link rel="stylesheet" href="/frontend/src/assets/auth.css" />
+</head>
+
+<body class="has-header">
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <span class="page-header__title">GeniDoc — Inscription</span>
+  </header>
+
+  <div class="auth-card">
+
+    <div class="auth-tabs">
+      <a href="/frontend/src/public/auth/login.html" class="auth-tab">
+        <span class="tab-icon"></span> Login
+      </a>
+      <a href="/frontend/src/public/auth/signup.html" class="auth-tab active">
+        <span class="tab-icon"></span> Sign Up
+      </a>
+    </div>
+
+    <div id="signup-alert" class="alert alert-error" style="display:none;">
+      <span class="alert-icon">⚠️</span>
+      <span id="signup-alert-msg"></span>
+    </div>
+
+    <form id="signup-form" autocomplete="on" novalidate>
+
+      <div class="form-group">
+        <label for="signup-nom">Nom</label>
+        <input type="text" id="signup-nom" name="genidoc_nom" placeholder="Entrez votre nom" required />
+      </div>
+
+      <div class="form-group">
+        <label for="signup-prenom">Prénom</label>
+        <input type="text" id="signup-prenom" name="genidoc_prenom" placeholder="Entrez votre prénom" required />
+      </div>
+
+      <div class="form-group">
+        <label for="signup-email">Email address</label>
+        <input type="email" id="signup-email" name="genidoc_email" placeholder="Enter your email address"
+          autocomplete="email" required />
+      </div>
+
+      <div class="form-group">
+        <div class="form-label-row">
+          <label for="signup-password">Password</label>
+        </div>
+        <div class="input-wrap">
+          <input type="password" id="signup-password" name="genidoc_password" placeholder="Enter your password"
+            autocomplete="new-password" required />
+          <button type="button" class="toggle-pw" onclick="togglePw('signup-password',this)" aria-label="Show password">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-label-row">
+          <label for="signup-confirm">Confirm password</label>
+        </div>
+        <div class="input-wrap">
+          <input type="password" id="signup-confirm" name="genidoc_confirm_password" placeholder="Confirm your password"
+            autocomplete="new-password" required />
+          <button type="button" class="toggle-pw" onclick="togglePw('signup-confirm',this)" aria-label="Show password">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="signup-role">Rôle</label>
+        <select name="genidoc_role" id="signup-role" required onchange="toggleOrgCode()">
+          <option value="" disabled selected>Choisir</option>
+          <option value="PEDIATRE">Pédiatre</option>
+          <option value="TUTEUR">Tuteur de l'enfant</option>
+          <option value="ADMIN">Administrateur</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="group-org-code" style="display:none;">
+        <label for="signup-org-code">Code Organisation *</label>
+        <input type="text" id="signup-org-code" name="org_code"
+          placeholder="Entrez le code de votre clinique/hôpital" />
+        <p style="font-size: 0.75rem; color: #666; margin-top: 5px;">Requis pour les tuteurs et pédiatres.</p>
+      </div>
+
+
+      <label style="display:flex; gap:10px; align-items:center; margin: 10px 0;">
+        <input type="checkbox" name="remember" />
+        Se souvenir de moi
+      </label>
+
+      <p class="auth-footer" style="margin-top: 10px;">
+        En créant un compte, vous acceptez nos
+        <a href="#" style="color:rgb(21, 96, 171)">Conditions & Confidentialité</a>.
+      </p>
+
+      <button type="submit" class="btn-primary" id="signup-btn">Sign Up</button>
+    </form>
+
+    <p class="auth-footer">
+      Vous avez déjà un compte ? <a href="/frontend/src/public/auth/login.html">Se connecter</a>
+    </p>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script>
+    function togglePw(id, btn) {
+      const inp = document.getElementById(id);
+      const isHidden = inp.type === 'password';
+      inp.type = isHidden ? 'text' : 'password';
+      btn.innerHTML = isHidden
+        ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>'
+        : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+    }
+
+    function toggleOrgCode() {
+      const role = document.getElementById('signup-role').value;
+      const orgGroup = document.getElementById('group-org-code');
+      const orgInput = document.getElementById('signup-org-code');
+
+      if (role === 'PEDIATRE' || role === 'TUTEUR') {
+        orgGroup.style.display = 'block';
+        orgInput.required = true;
+      } else {
+        orgGroup.style.display = 'none';
+        orgInput.required = false;
+        orgInput.value = '';
+      }
+    }
+
+    document.getElementById('signup-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nom = document.getElementById('signup-nom').value.trim();
+      const prenom = document.getElementById('signup-prenom').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value;
+      const confirm = document.getElementById('signup-confirm').value;
+      const role = document.getElementById('signup-role').value;
+      const orgCode = document.getElementById('signup-org-code').value.trim();
+
+      const alertBox = document.getElementById('signup-alert');
+      const alertMsg = document.getElementById('signup-alert-msg');
+      const btn = document.getElementById('signup-btn');
+
+      if (!nom || !prenom || !email || !password || !confirm || !role) {
+        alertBox.style.display = 'flex';
+        alertMsg.textContent = 'Veuillez remplir tous les champs.';
+        return;
+      }
+
+      if (password !== confirm) {
+        alertBox.style.display = 'flex';
+        alertMsg.textContent = 'Les mots de passe ne correspondent pas.';
+        return;
+      }
+
+      btn.textContent = "Creating…";
+      btn.disabled = true;
+
+      try {
+        const data = await window.genidocApi.signup({
+          genidoc_nom: nom,
+          genidoc_prenom: prenom,
+          genidoc_email: email,
+          genidoc_password: password,
+          genidoc_confirm_password: confirm,
+          genidoc_role: role,
+          org_code: orgCode
+        });
+
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          if (data.user) localStorage.setItem('user', JSON.stringify(data.user));
+          alertBox.style.display = 'none';
+
+          window.location.href = data.next_route || '/frontend/src/pages/index.html';
+        } else {
+          alertBox.style.display = 'flex';
+          alertMsg.textContent = data.message || "Erreur lors de l'inscription.";
+        }
+      } catch (err) {
+        alertBox.style.display = 'flex';
+        alertMsg.textContent = err.message || 'Server connection error.';
+      } finally {
+        btn.textContent = 'Sign Up';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+
+</html>

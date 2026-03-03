@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Médecins</title>
+  <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Admin — Médecins</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row"><span id="genidoc_id1">Rôle :</span><span>Admin</span></div>
+        <div class="info-row"><span id="genidoc_id1">Total :</span><span>—</span></div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./index.html">Dashboard</a>
+        <a href="./pediatres-validation.html">Validation pédiatres</a>
+        <a href="./medecins.html" aria-current="page">Médecins</a>
+        <a href="./organisation.html">Organisation</a>
+        <a href="./rapports.html">Rapports</a>
+        <a href="./settings.html">Paramètres</a>
+        <a href="../../auth/login.html">Déconnexion</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon"><img src="/frontend/static/world.png" alt="genidoc_world"></span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <span class="badge"><img src="/frontend/static/doctor.png" alt="genidoc_doctor"
+                class="genidoc_doctor"></span>
+            <span class="form-card__title">Gestion des médecins</span>
+          </div>
+          <div class="form-card__subtitle">Recherche, liste et invitations.</div>
+        </div>
+
+        <div class="genidoc-form">
+          <div class="section-title">Inviter un médecin</div>
+
+          <form action="#" method="post">
+            <div class="form-grid">
+              <div class="form-field form-field--full">
+                <label for="invite_email">Email *</label>
+                <input id="invite_email" name="invite_email" type="email" placeholder="ex: docteur@..." required />
+              </div>
+              <div class="form-field">
+                <label for="invite_nom">Nom</label>
+                <input id="invite_nom" name="invite_nom" type="text" placeholder="Optionnel" />
+              </div>
+              <div class="form-field">
+                <label for="invite_prenom">Prénom</label>
+                <input id="invite_prenom" name="invite_prenom" type="text" placeholder="Optionnel" />
+              </div>
+            </div>
+
+            <div class="form-actions" style="justify-content:flex-end;">
+              <button type="submit" class="card__btn">Envoyer invitation</button>
+            </div>
+          </form>
+
+          <div class="form-divider"></div>
+
+          <div class="section-title">Liste</div>
+
+          <div class="form-grid">
+            <div class="form-field form-field--full">
+              <label for="q">Nom / Email</label>
+              <input id="q" name="q" type="text" placeholder="Rechercher..." />
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="cards-grid">
+            <div class="card card-2">
+              <div class="card__hero card__hero--blue">
+                <div class="card__hero-header"><span>Médecin</span><span><img src="/frontend/static/stethoscope.png"
+                      alt="" class="genidoc_stethoscope"></span></div>
+                <div class="card__job-title">Dr —</div>
+                <div class="card__desc">Email: — | Spécialité: —</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary"><span>Profil</span><span class="badge">→</span></div>
+                <button class="card__btn" type="button">Ouvrir</button>
+              </div>
+            </div>
+
+            <div class="card card-4">
+              <div class="card__hero card__hero--gray">
+                <div class="card__hero-header"><span>Médecin</span><span><img src="/frontend/static/stethoscope.png"
+                      alt="" class="genidoc_stethoscope"></span></div>
+                <div class="card__job-title">Dr —</div>
+                <div class="card__desc">Email: — | Statut: invité</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary"><span>Actions</span><span class="badge">→</span></div>
+                <button class="card__btn" type="button">Relancer</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

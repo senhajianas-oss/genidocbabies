@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Tuteur — GeniDoc</title>
+    <meta name="description"
+        content="Tableau de bord tuteur GeniDoc : gérez vos enfants, carnets de santé et rendez-vous." />
+    <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+    <header class="page-header">
+        <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+        <div class="page-header__divider"></div>
+        <h1 class="page-header__title">Dashboard — Tuteur</h1>
+    </header>
+
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <section class="info-section">
+                <div class="info-row">
+                    <span id="tuteur_nom_label">Nom :</span>
+                    <span id="tuteur_nom_value">—</span>
+                </div>
+                <div class="info-row">
+                    <span id="tuteur_role_label">Rôle :</span>
+                    <span>Tuteur</span>
+                </div>
+                <div class="info-row">
+                    <span id="tuteur_enfants_label">Enfants :</span>
+                    <span id="tuteur_enfants_count">—</span>
+                </div>
+            </section>
+
+            <hr class="separateur sep2" />
+
+            <nav class="menu">
+                <a href="./index.html" aria-current="page">Dashboard</a>
+                <a href="./enfants.html">Mes enfants</a>
+                <a href="./carnet-upload.html">Carnet &amp; scans</a>
+                <a href="./rendezvous.html">Rendez-vous</a>
+                <a href="./profil.html">Mon profil</a>
+                <a href="./settings.html">Paramètres</a>
+                <a href="../../auth/login.html">Déconnexion</a>
+            </nav>
+
+            <div class="langue">
+                <span class="langue-icon"><img src="/frontend/static/world.png" class="emoji-icon" alt="Langue"></span>
+                <select aria-label="Langue">
+                    <option value="fr" selected>FR</option>
+                    <option value="ar">AR</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+
+            <div class="articles_genidoc_obligatoires">
+                <article class="vaccination_genidoc">
+                    <h3 class="vaccination_genidoc__title">Vaccination</h3>
+                    <p class="vaccination_genidoc__desc">Voir le calendrier &amp; rappels.</p>
+                    <a class="vaccination_genidoc__link pro-link" href="#">
+                        <span class="pro-link__text">Voir</span>
+                        <span class="pro-link__icon"><img src="/frontend/static/quick.png" class="emoji-icon"
+                                alt="↗"></span>
+                    </a>
+                </article>
+
+                <article class="suivi_staturo_psychomoteur_genidoc">
+                    <h3 class="mini-card__title">Suivi</h3>
+                    <p class="mini-card__desc">Courbes &amp; évolution.</p>
+                    <div class="mini-card__actions">
+                        <a class="mini-card__btn" href="#">Voir</a>
+                        <a class="mini-card__btn mini-card__btn--ghost" href="#">Ajouter</a>
+                    </div>
+                </article>
+
+                <article class="la_prevention_et_le_depistage_genidoc">
+                    <h3 class="mini-card__title">Prévention</h3>
+                    <p class="mini-card__desc">Dépistage &amp; conseils.</p>
+                    <div class="mini-card__actions">
+                        <a class="mini-card__btn" href="#">Voir</a>
+                        <a class="mini-card__btn mini-card__btn--ghost" href="#">Lire</a>
+                    </div>
+                </article>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="form-card">
+                <div class="form-card__header">
+                    <div class="form-card__kpi">
+                        <span class="badge"><img src="/frontend/static/verified.png" class="emoji-icon"
+                                alt="Star"></span>
+                        <span class="form-card__title">Actions rapides</span>
+                    </div>
+                    <div class="form-card__subtitle">
+                        Gérez vos enfants, scans et rendez-vous.
+                    </div>
+                </div>
+
+                <div class="genidoc-form">
+                    <div class="cards-grid">
+                        <a class="card card-2" href="./enfants.html">
+                            <div class="card__hero card__hero--blue">
+                                <div class="card__hero-header">
+                                    <span>Enfants</span>
+                                    <span><img src="/frontend/static/patient.png" class="emoji-icon" alt="Baby"></span>
+                                </div>
+                                <div class="card__job-title">Mes enfants</div>
+                                <div class="card__desc">Liste &amp; détails des enfants.</div>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__job-summary">
+                                    <span>Accéder</span><span class="badge"><img src="/frontend/static/enter.png"
+                                            class="emoji-icon" alt="→"></span>
+                                </div>
+                                <div class="card__btn">Ouvrir</div>
+                            </div>
+                        </a>
+
+                        <a class="card card-1" href="../../onboarding/tuteur/step2-profil.html">
+                            <div class="card__hero card__hero--green">
+                                <div class="card__hero-header">
+                                    <span>Nouveau</span>
+                                    <span><img src="/frontend/static/quick.png" class="emoji-icon" alt="+"></span>
+                                </div>
+                                <div class="card__job-title">Ajouter un enfant</div>
+                                <div class="card__desc">Créer une nouvelle carte.</div>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__job-summary">
+                                    <span>Créer</span><span class="badge"><img src="/frontend/static/enter.png"
+                                            class="emoji-icon" alt="→"></span>
+                                </div>
+                                <div class="card__btn">Ajouter</div>
+                            </div>
+                        </a>
+
+                        <a class="card card-3" href="./carnet-upload.html">
+                            <div class="card__hero card__hero--red">
+                                <div class="card__hero-header">
+                                    <span>Scans</span>
+                                    <span><img src="/frontend/static/list.png" class="emoji-icon" alt="Doc"></span>
+                                </div>
+                                <div class="card__job-title">Carnet &amp; scans</div>
+                                <div class="card__desc">Importer le carnet physique.</div>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__job-summary">
+                                    <span>Uploader</span><span class="badge"><img src="/frontend/static/enter.png"
+                                            class="emoji-icon" alt="→"></span>
+                                </div>
+                                <div class="card__btn">Ouvrir</div>
+                            </div>
+                        </a>
+
+                        <a class="card card-4" href="./rendezvous.html">
+                            <div class="card__hero card__hero--gray">
+                                <div class="card__hero-header">
+                                    <span>RDV</span>
+                                    <span><img src="/frontend/static/schedule.png" class="emoji-icon" alt="RDV"></span>
+                                </div>
+                                <div class="card__job-title">Rendez-vous</div>
+                                <div class="card__desc">Créer &amp; gérer les RDV.</div>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__job-summary">
+                                    <span>Accéder</span><span class="badge"><img src="/frontend/static/enter.png"
+                                            class="emoji-icon" alt="→"></span>
+                                </div>
+                                <div class="card__btn">Ouvrir</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <hr class="separateur sep2" />
+
+                    <div class="hint-box">
+                        Astuce : si un carnet est "en attente", vous pouvez l'uploader à tout moment depuis "Carnet
+                        &amp; scans".
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../../js/api.js"></script>
+    <script src="../../js/shared.js"></script>
+    <script>
+        async function loadTuteurData() {
+            try {
+                // 1. Charger le nombre d'enfants
+                const enfantsData = await window.genidocApi.tuteur.getEnfants();
+                document.getElementById('tuteur_enfants_count').textContent = enfantsData.enfants?.length || '0';
+
+                // 2. Charger les notifications
+                const notifsData = await window.genidocApi.tuteur.getNotifications();
+                const alerts = notifsData.notifications || [];
+
+                if (alerts.length > 0) {
+                    const container = document.querySelector('.genidoc-form');
+                    const alertHtml = `
+                        <div class="notifications-section" style="margin-top: 20px;">
+                            <div class="section-title">Alertes de santé</div>
+                            ${alerts.map(a => `
+                                <div class="alert alert-${a.priority === 'HIGH' ? 'error' : 'warning'}" style="margin-bottom: 10px; display: flex;">
+                                    <span class="alert-icon"><img src="/frontend/static/warning.png" class="emoji-icon" alt="!"></span>
+                                    <div>
+                                        <strong>${a.title}</strong><br/>
+                                        <small>${a.message}</small>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    container.insertAdjacentHTML('afterbegin', alertHtml);
+                }
+            } catch (err) {
+                console.error("Erreur chargement tuteur:", err);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadTuteurData);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rapports</title>
+  <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Admin — Rapports</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row"><span id="genidoc_id1">Rôle :</span><span>Admin</span></div>
+        <div class="info-row"><span id="genidoc_id1">Exports :</span><span>—</span></div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./index.html">Dashboard</a>
+        <a href="./pediatres-validation.html">Validation pédiatres</a>
+        <a href="./medecins.html">Médecins</a>
+        <a href="./organisation.html">Organisation</a>
+        <a href="./rapports.html" aria-current="page">Rapports</a>
+        <a href="./settings.html">Paramètres</a>
+        <a href="../../auth/login.html">Déconnexion</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon">🌐</span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <span class="badge">📊</span>
+            <span class="form-card__title">Rapports & exports</span>
+          </div>
+          <div class="form-card__subtitle">Générer des exports (activité, validations, médecins).</div>
+        </div>
+
+        <form class="genidoc-form" action="#" method="post" novalidate>
+          <div class="section-title">Filtres</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="date_from">Du</label>
+              <input id="date_from" name="date_from" type="date" />
+            </div>
+
+            <div class="form-field">
+              <label for="date_to">Au</label>
+              <input id="date_to" name="date_to" type="date" />
+            </div>
+
+            <div class="form-field form-field--full">
+              <label for="type_report">Type de rapport *</label>
+              <select id="type_report" name="type_report" required>
+                <option value="" selected disabled>Choisir</option>
+                <option value="VALIDATIONS">Validations pédiatres</option>
+                <option value="MEDECINS">Médecins</option>
+                <option value="ACTIVITE">Activité (global)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-actions" style="justify-content:flex-end;">
+            <button type="submit" class="card__btn">Générer</button>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="section-title">Historique</div>
+
+          <div class="cards-grid">
+            <div class="card card-4">
+              <div class="card__hero card__hero--gray">
+                <div class="card__hero-header"><span>Export</span><span>⬇️</span></div>
+                <div class="card__job-title">—</div>
+                <div class="card__desc">Type: — | Période: —</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary"><span>Télécharger</span><span class="badge">→</span></div>
+                <button type="button" class="card__btn">Download</button>
+              </div>
+            </div>
+
+            <div class="card card-4">
+              <div class="card__hero card__hero--gray">
+                <div class="card__hero-header"><span>Export</span><span>⬇️</span></div>
+                <div class="card__job-title">—</div>
+                <div class="card__desc">Type: — | Période: —</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary"><span>Télécharger</span><span class="badge">→</span></div>
+                <button type="button" class="card__btn">Download</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dossier Médical — Pédiatre GeniDoc</title>
+    <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+    <style>
+        .filter-section {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .record-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .record-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .record-type {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .type-vital {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .type-consultation {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .type-vaccin {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+
+        .record-date {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .record-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .record-details {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        .patient-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #12d8fa 0%, #1fa2ff 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+        }
+
+        .patient-avatar {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .patient-info h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .patient-info p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+        }
+
+        .tab-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            color: #1fa2ff;
+            background: rgba(31, 162, 255, 0.1);
+        }
+
+        #empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="page-header">
+        <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+        <div class="page-header__divider"></div>
+        <h1 class="page-header__title">Pédiatre — Dossier Patient</h1>
+    </header>
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <section class="info-section">
+                <div class="info-row">
+                    <span>Pédiatre :</span>
+                    <span id="ped_nom_value">—</span>
+                </div>
+            </section>
+
+            <hr class="separateur sep2" />
+
+            <nav class="menu">
+                <a href="./index.html">Dashboard</a>
+                <a href="./patients.html">Mes patients</a>
+                <a href="./rendezvous.html">Rendez-vous</a>
+                <a href="./dossiers.html" aria-current="page">Dossiers médicaux</a>
+                <a href="./profil.html">Mon profil</a>
+                <a href="../../auth/login.html">Déconnexion</a>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <div id="loading" style="text-align: center; padding: 50px;">
+                Chargement du dossier...
+            </div>
+
+            <div id="error"
+                style="display: none; padding: 20px; background: #ffebee; color: #c62828; border-radius: 12px; margin-bottom: 20px;">
+                Impossible de charger le dossier. Assurez-vous d'être bien authentifié.
+            </div>
+
+            <div id="record-content" style="display: none;">
+                <div class="patient-header">
+                    <div class="patient-avatar">👶</div>
+                    <div class="patient-info">
+                        <h2 id="patient-name">Prénom Nom</h2>
+                        <p id="patient-meta">Né le --/--/---- • ID: #P--</p>
+                    </div>
+                </div>
+
+                <section class="filter-section">
+                    <div class="form-field" style="margin-bottom: 0;">
+                        <label>De (Date)</label>
+                        <input type="date" id="filter-start" />
+                    </div>
+                    <div class="form-field" style="margin-bottom: 0;">
+                        <label>À (Date)</label>
+                        <input type="date" id="filter-end" />
+                    </div>
+                    <div class="form-field" style="margin-bottom: 0;">
+                        <label>Type</label>
+                        <select id="filter-type">
+                            <option value="all">Tous les éléments</option>
+                            <option value="consultation">Consultations</option>
+                            <option value="vital">Vitals</option>
+                            <option value="vaccin">Vaccinations</option>
+                        </select>
+                    </div>
+                    <button id="apply-filters" class="card__btn" style="margin-top: 0;">Filtrer</button>
+                    <button id="reset-filters" class="card__btn"
+                        style="background: #f5f5f5; color: #333;">Réinitialiser</button>
+
+                    <div style="display: flex; gap: 10px; margin-left: auto;">
+                        <button id="export-pdf" class="card__btn" style="background: #e74c3c;">PDF</button>
+                        <button id="export-excel" class="card__btn" style="background: #27ae60;">Excel</button>
+                    </div>
+                </section>
+
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-type="all">Chronologie</button>
+                    <button class="tab-btn" data-type="consultation">Consultations</button>
+                    <button class="tab-btn" data-type="vital">Mesures</button>
+                    <button class="tab-btn" data-type="vaccin">Vaccins</button>
+                </div>
+
+                <div id="records-list">
+                    <!-- Events will be loaded here -->
+                </div>
+
+                <div id="empty-state" style="display: none;">
+                    <img src="/frontend/static/list.png" class="emoji-icon" style="width: 50px; margin-bottom: 15px;"
+                        alt="Empty">
+                    <p>Aucun événement trouvé pour les critères sélectionnés.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="../../js/api.js"></script>
+    <script src="../../js/shared.js"></script>
+    <script>
+        let allEvents = [];
+        const patientId = new URLSearchParams(window.location.search).get('id');
+
+        async function init() {
+            if (!patientId) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('error').textContent = "ID patient manquant dans l'URL.";
+                return;
+            }
+
+            try {
+                const data = await window.genidocApi.pediatre.getPatientDetails(patientId);
+                const { enfant, vitals, vaccins, consultations } = data;
+
+                // Update UI
+                document.getElementById('patient-name').textContent = `${enfant.prenom} ${enfant.nom}`;
+                document.getElementById('patient-meta').textContent = `Né le ${window.formatDate(enfant.date_naissance)} • ID: #P${enfant.genidoc_enfant_id}`;
+
+                // Combine all events for timeline
+                allEvents = [
+                    ...consultations.map(c => ({ ...c, type: 'consultation', date: c.consulted_at })),
+                    ...vitals.map(v => ({ ...v, type: 'vital', date: v.measured_at })),
+                    ...vaccins.map(v => ({ ...v, type: 'vaccin', date: v.vaccinated_at }))
+                ].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                renderEvents(allEvents);
+
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('record-content').style.display = 'block';
+            } catch (err) {
+                console.error(err);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+
+        function renderEvents(events) {
+            const list = document.getElementById('records-list');
+            const empty = document.getElementById('empty-state');
+            list.innerHTML = '';
+
+            if (events.length === 0) {
+                empty.style.display = 'block';
+                return;
+            }
+
+            empty.style.display = 'none';
+
+            events.forEach(e => {
+                const card = document.createElement('div');
+                card.className = 'record-card';
+
+                let typeLabel = '';
+                let details = '';
+                let title = '';
+
+                if (e.type === 'consultation') {
+                    typeLabel = '<span class="record-type type-consultation">Consultation</span>';
+                    title = e.motif || 'Visite médicale';
+                    details = `<strong>Diagnostic :</strong> ${e.diagnostic || 'N/A'}<br><strong>Ordonnance :</strong> ${e.ordonnance || 'N/A'}`;
+                } else if (e.type === 'vital') {
+                    typeLabel = '<span class="record-type type-vital">Mesures (Vitals)</span>';
+                    title = 'Point de croissance';
+                    details = `Poids : ${e.poids_kg}kg | Taille : ${e.taille_cm}cm | Temp : ${e.temperature_c}°C<br>${e.notes || ''}`;
+                } else if (e.type === 'vaccin') {
+                    typeLabel = '<span class="record-type type-vaccin">Vaccination</span>';
+                    title = e.vaccin_nom || 'Vaccin';
+                    details = `Dose : ${e.dose_no} | Lot : ${e.lot || 'N/A'}<br>${e.notes || ''}`;
+                }
+
+                card.innerHTML = `
+                    ${typeLabel}
+                    <div class="record-date">${window.formatDateTime ? window.formatDateTime(e.date) : window.formatDate(e.date)}</div>
+                    <div class="record-title">${title}</div>
+                    <div class="record-details">${details}</div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function filterRecords() {
+            const start = document.getElementById('filter-start').value;
+            const end = document.getElementById('filter-end').value;
+            const type = document.getElementById('filter-type').value;
+
+            let filtered = allEvents;
+
+            if (start) {
+                filtered = filtered.filter(e => new Date(e.date) >= new Date(start));
+            }
+            if (end) {
+                // inclusive of the end day
+                const endDate = new Date(end);
+                endDate.setHours(23, 59, 59);
+                filtered = filtered.filter(e => new Date(e.date) <= endDate);
+            }
+            if (type !== 'all') {
+                filtered = filtered.filter(e => e.type === type);
+            }
+
+            renderEvents(filtered);
+        }
+
+        document.getElementById('apply-filters').addEventListener('click', filterRecords);
+        document.getElementById('reset-filters').addEventListener('click', () => {
+            document.getElementById('filter-start').value = '';
+            document.getElementById('filter-end').value = '';
+            document.getElementById('filter-type').value = 'all';
+            renderEvents(allEvents);
+        });
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const type = btn.getAttribute('data-type');
+
+                document.getElementById('filter-type').value = type;
+                filterRecords();
+            });
+        });
+
+        document.getElementById('export-pdf').addEventListener('click', () => {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const name = document.getElementById('patient-name').textContent;
+            const meta = document.getElementById('patient-meta').textContent;
+            const doctor = document.getElementById('ped_nom_value').textContent;
+
+            doc.setFontSize(18);
+            doc.text("Dossier Medical - GeniDoc", 14, 20);
+            doc.setFontSize(12);
+            doc.text(`Patient : ${name}`, 14, 30);
+            doc.text(meta, 14, 37);
+            doc.text(`Médecin : ${doctor}`, 14, 44);
+            doc.text(`Date d'export : ${new Date().toLocaleDateString()}`, 14, 51);
+
+            const tableData = allEvents.map(e => [
+                window.formatDate(e.date),
+                e.type.toUpperCase(),
+                e.type === 'consultation' ? e.motif : (e.type === 'vital' ? 'Mesures' : e.vaccin_nom),
+                e.type === 'consultation' ? e.diagnostic : (e.type === 'vital' ? `${e.poids_kg}kg, ${e.taille_cm}cm` : `Dose ${e.dose_no}`)
+            ]);
+
+            doc.autoTable({
+                startY: 58,
+                head: [['Date', 'Type', 'Objet', 'Details']],
+                body: tableData,
+            });
+
+            doc.save(`Dossier_${name.replace(/\s+/g, '_')}.pdf`);
+        });
+
+        document.getElementById('export-excel').addEventListener('click', () => {
+            const name = document.getElementById('patient-name').textContent;
+            const data = allEvents.map(e => ({
+                Date: window.formatDate(e.date),
+                Type: e.type,
+                Objet: e.type === 'consultation' ? e.motif : (e.type === 'vital' ? 'Mesures' : e.vaccin_nom),
+                Details: e.type === 'consultation' ? e.diagnostic : (e.type === 'vital' ? `${e.poids_kg}kg, ${e.taille_cm}cm` : `Dose ${e.dose_no}`),
+                Notes: e.notes || ''
+            }));
+
+            const ws = XLSX.utils.json_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Dossier");
+            XLSX.writeFile(wb, `Dossier_${name.replace(/\s+/g, '_')}.xlsx`);
+        });
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+
+</html>

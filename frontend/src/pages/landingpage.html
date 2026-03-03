@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeniDoc Hayat — L'avenir de la santé pédiatrique est là</title>
+
+  <!-- Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      /* Palette Chromatique Sophistiquée */
+      --brand-deep: #0a2540;
+      --brand-primary: #635bff;
+      --brand-accent: #00d4ff;
+      --brand-soft: #f6f9fc;
+      --text-main: #425466;
+      --text-heading: #0a2540;
+
+      /* Glassmorphism & UI Tokens */
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.4);
+      --card-shadow: 0 50px 100px -20px rgba(50, 50, 93, 0.25),
+        0 30px 60px -30px rgba(0, 0, 0, 0.3);
+      --inner-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+      --container-width: 1200px;
+      --transition-smooth: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #ffffff;
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+    }
+
+    /* Background Mesh Gradient (The "Wow" factor) */
+    .mesh-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
+      background-color: #ffffff;
+      opacity: 0.05;
+    }
+
+    /* ---------- Navigation ---------- */
+    .nav-container {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(90%, 1000px);
+      z-index: 1000;
+    }
+
+    .navbar {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      padding: 12px 24px;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      color: var(--brand-deep);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      background: var(--brand-primary);
+      border-radius: 3px;
+      transform: rotate(45deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+    }
+
+    .nav-links a:hover {
+      color: var(--brand-primary);
+    }
+
+    .nav-cta {
+      background: var(--brand-deep);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition-smooth);
+    }
+
+    .nav-cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      padding: 200px 24px 100px;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(99, 91, 255, 0.1);
+      color: var(--brand-primary);
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+      border: 1px solid rgba(99, 91, 255, 0.2);
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 1;
+      margin-bottom: 24px;
+      font-weight: 900;
+      background: linear-gradient(to right, var(--brand-deep), var(--brand-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-main);
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .btn-main {
+      padding: 18px 36px;
+      background: var(--brand-primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(99, 91, 255, 0.3);
+    }
+
+    .btn-secondary {
+      padding: 18px 36px;
+      background: #f6f9fc;
+      color: var(--brand-deep);
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-secondary:hover {
+      background: #eef2f7;
+    }
+
+    /* ---------- Bento Grid Section ---------- */
+    .section {
+      padding: 120px 24px;
+      max-width: var(--container-width);
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 16px;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 240px;
+      gap: 24px;
+    }
+
+    .bento-card {
+      background: #ffffff;
+      border-radius: 30px;
+      padding: 40px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .bento-card:hover {
+      border-color: var(--brand-primary);
+      transform: translateY(-5px);
+    }
+
+    .bento-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    /* Card Sizes */
+    .card-large {
+      grid-column: span 8;
+      grid-row: span 2;
+    }
+
+    .card-medium {
+      grid-column: span 4;
+      grid-row: span 2;
+    }
+
+    .card-square {
+      grid-column: span 4;
+      grid-row: span 1;
+    }
+
+    .card-semi {
+      grid-column: span 6;
+      grid-row: span 1;
+    }
+
+    .card-accent {
+      background: var(--brand-deep);
+      color: white;
+    }
+
+    .card-accent h3,
+    .card-accent p {
+      color: white;
+    }
+
+    .card-accent .card-tag {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .card-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: var(--brand-soft);
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    /* ---------- Interactive Card Preview ---------- */
+    .card-mockup {
+      width: 320px;
+      height: 200px;
+      background: linear-gradient(135deg, #0a2540 0%, #1c3d5a 100%);
+      border-radius: 16px;
+      margin-top: 40px;
+      position: relative;
+      padding: 24px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .mockup-logo {
+      color: white;
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+
+    .mockup-chip {
+      width: 40px;
+      height: 30px;
+      background: #cbb26a;
+      border-radius: 5px;
+      margin-top: 30px;
+    }
+
+    .mockup-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+    }
+
+    /* ---------- Testimonials ---------- */
+    .testimonials {
+      background: #0a2540;
+      color: white;
+      padding: 120px 24px;
+    }
+
+    .testimonials h2 {
+      color: white;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: var(--container-width);
+      margin: 0 auto;
+    }
+
+    .test-item blockquote {
+      font-size: 1.2rem;
+      font-style: italic;
+      margin-bottom: 24px;
+      opacity: 0.9;
+    }
+
+    .test-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      background: var(--brand-primary);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+    }
+
+    /* ---------- FAQ ---------- */
+    .faq-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    details {
+      margin-bottom: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 16px;
+      padding: 12px;
+      transition: var(--transition-smooth);
+    }
+
+    details[open] {
+      background: var(--brand-soft);
+      border-color: var(--brand-primary);
+    }
+
+    summary {
+      font-weight: 700;
+      cursor: pointer;
+      padding: 12px;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+
+    summary::after {
+      content: "+";
+      font-size: 1.5rem;
+      color: var(--brand-primary);
+    }
+
+    details[open] summary::after {
+      content: "-";
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: #f6f9fc;
+      padding: 100px 24px 40px;
+      color: var(--brand-deep);
+    }
+
+    .footer-content {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 80px;
+    }
+
+    .footer-brand h4 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+
+    .footer-links h5 {
+      margin-bottom: 24px;
+      font-weight: 800;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      padding-top: 40px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .bento-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+      }
+
+      .card-large,
+      .card-medium,
+      .card-square,
+      .card-semi {
+        grid-column: span 12;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .test-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .emoji-icon {
+      width: 1.25em;
+      height: 1.25em;
+      vertical-align: middle;
+      object-fit: contain;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="mesh-bg"></div>
+
+  <!-- Navigation -->
+  <div class="nav-container">
+    <nav class="navbar">
+      <a href="#" class="logo">GeniDoc Hayat</a>
+      <div class="nav-links">
+        <a href="#vision">Vision</a>
+        <a href="#technologie">Technologie</a>
+        <a href="#medecins">Médecins</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a href="/frontend/src/auth/login.html" class="nav-cta">Connexion</a>
+    </nav>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-badge">Innové au Maroc</div>
+    <h1>La santé de vos enfants, <br>réinventée.</h1>
+    <p>Le premier carnet de santé intelligent à vie. Une carte NFC infalsifiable, une application intuitive et une
+      surveillance proactive pour rassurer chaque parent.</p>
+
+    <div class="btn-group">
+      <a href="/frontend/src/auth/signup.html" class="btn-main">
+        Commander ma carte
+        <img src="/frontend/static/enter.png" class="emoji-icon" alt="→" style="filter: brightness(0) invert(1);">
+      </a>
+      <a href="#demo" class="btn-secondary">Voir la démo</a>
+    </div>
+
+    <!-- Interactive Card Mockup -->
+    <div style="display: flex; justify-content: center; margin-top: 60px;">
+      <div class="card-mockup floating">
+        <div class="mockup-logo">GeniDoc Hayat</div>
+        <div class="mockup-chip"></div>
+        <div style="margin-top: 20px; color: white; letter-spacing: 4px; font-size: 1.1rem;">
+          •••• •••• •••• 2025
+        </div>
+        <div class="mockup-footer">ID: HAYAT-MA-001</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Bento Grid Section -->
+  <section class="section" id="technologie">
+    <div class="section-header">
+      <div class="hero-badge">L'écosystème</div>
+      <h2>Plus qu'un simple carnet.</h2>
+    </div>
+
+    <div class="bento-grid">
+      <!-- Feature 1 -->
+      <div class="bento-card card-large">
+        <div class="card-tag">Technologie NFC</div>
+        <span class="card-icon"><img src="/frontend/static/quick.png" class="emoji-icon"
+            style="width: 48px; height: 48px;"></span>
+        <h3>Données vitales instantanées</h3>
+        <p>En cas d'urgence, n'importe quel médecin peut accéder au groupe sanguin, aux allergies et aux pathologies
+          lourdes en scannant simplement la carte. Pas besoin d'internet, pas besoin de batterie.</p>
+        <div style="margin-top: 30px; display: flex; gap: 10px;">
+          <div style="width: 100px; height: 4px; background: var(--brand-primary); border-radius: 2px;"></div>
+          <div style="width: 100px; height: 4px; background: var(--brand-soft); border-radius: 2px;"></div>
+          <div style="width: 100px; height: 4px; background: var(--brand-soft); border-radius: 2px;"></div>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="bento-card card-medium card-accent">
+        <div class="card-tag">IA Préventive</div>
+        <span class="card-icon"><img src="/frontend/static/data-analytics.png" class="emoji-icon"
+            style="width: 48px; height: 48px;"></span>
+        <h3>Surveillance active 24/7</h3>
+        <p>Notre logiciel analyse les courbes de croissance et les jalons de développement. Recevez des alertes
+          discrètes si un contrôle est nécessaire.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="bento-card card-square">
+        <div class="card-tag">Vaccination</div>
+        <span class="card-icon"><img src="/frontend/static/stethoscope.png" class="emoji-icon"
+            style="width: 48px; height: 48px;"></span>
+        <h3>Zéro oubli</h3>
+        <p>Le calendrier officiel de vaccination intégré avec rappels automatiques. Suvivez les doses administrées et à
+          venir.</p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="bento-card card-semi">
+        <div class="card-tag">Sécurité</div>
+        <span class="card-icon"><img src="/frontend/static/security-lock.png" class="emoji-icon"
+            style="width: 48px; height: 48px;"></span>
+        <h3>Confidentialité Totale</h3>
+        <p>Données chiffrées de bout en bout et hébergées exclusivement au Maroc. Conformité totale CNDP.</p>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="bento-card card-semi">
+        <div class="card-tag">Intervalles</div>
+        <span class="card-icon"><img src="/frontend/static/list.png" class="emoji-icon"
+            style="width: 48px; height: 48px;"></span>
+        <h3>Historique Unifié</h3>
+        <p>Compte-rendus, ordonnances et analyses centralisés. Ne perdez plus jamais un document médical important.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="section-header">
+      <h2 style="color: white;">Rejoignez des milliers de parents.</h2>
+    </div>
+
+    <div class="test-grid">
+      <div class="test-item">
+        <blockquote>"C’est un soulagement immense. Je sais que si mon fils a un problème à l'école, sa carte donnera
+          toutes les infos vitales aux secours."</blockquote>
+        <div class="test-author">
+          <div class="author-avatar" style="background:#0ea5e9;">M</div>
+          <div>
+            <strong>Mounia A.</strong><br>
+            <span>Maman de Ryan (4 ans)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-item">
+        <blockquote>"En tant que pédiatre, l'historique complet en un clic me fait gagner un temps précieux et évite les
+          erreurs de parents qui ne se rappellent plus."</blockquote>
+        <div class="test-author">
+          <div class="author-avatar" style="background:#635bff;">S</div>
+          <div>
+            <strong>Dr. Slimani</strong><br>
+            <span>Pédiatre à Casablanca</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-item">
+        <blockquote>"L'application est tellement fluide. Les rappels de vaccins m'ont sauvé, j'avais complètement oublié
+          le rappel des 6 ans."</blockquote>
+        <div class="test-author">
+          <div class="author-avatar" style="background:#f43f5e;">Y</div>
+          <div>
+            <strong>Yassine T.</strong><br>
+            <span>Père de 3 enfants</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section" id="faq">
+    <div class="section-header">
+      <h2>Questions courantes</h2>
+    </div>
+
+    <div class="faq-wrapper">
+      <details>
+        <summary>Comment fonctionne la carte NFC ?</summary>
+        <p>La carte utilise la technologie sans contact (NFC). Un médecin n'a qu'à approcher son téléphone de la carte
+          pour ouvrir une interface sécurisée (après votre autorisation ou en mode urgence) contenant les données
+          vitales.</p>
+      </details>
+
+      <details>
+        <summary>Combien coûte la solution ?</summary>
+        <p>Le paiement est unique (349 MAD) pour l'achat de la carte physique et l'accès à vie à la plateforme de base.
+          Il n'y a pas d'abonnement obligatoire pour les fonctionnalités essentielles.</p>
+      </details>
+
+      <details>
+        <summary>Mes données sont-elles vraiment en sécurité ?</summary>
+        <p>Oui. Nous appliquons les protocoles de sécurité bancaire. Seuls les professionnels de santé que vous
+          autorisez peuvent consulter le dossier complet de votre enfant.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>GeniDoc Hayat</h4>
+        <p>Rendre la santé pédiatrique universelle, accessible et technologique.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Produit</h5>
+        <ul>
+          <li><a href="#">Commander</a></li>
+          <li><a href="#">Application</a></li>
+          <li><a href="#">Tarifs</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Légal</h5>
+        <ul>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Mentions</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Presse</a></li>
+          <li><a href="#">Partenaires</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; <span id="year"></span> GeniDoc Hayat. Conçu par le futur de la santé.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>

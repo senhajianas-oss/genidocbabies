@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding Tuteur - Étape 2</title>
+  <link rel="stylesheet" href="/frontend/src/public/onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Tuteur — Étape 2/3</h1>
+  </header>
+
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row">
+          <span id="genidoc_id1">Rôle :</span>
+          <span>Tuteur</span>
+        </div>
+
+        <div class="info-row">
+          <span id="genidoc_id1">Étape :</span>
+          <span>Création enfant</span>
+        </div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./step1-profile.html">Étape 1 — Profil</a>
+        <a href="#" aria-current="page">Étape 2 — Enfant & carnet</a>
+        <a href="#" class="disabled-link" tabindex="-1" aria-disabled="true">Étape 3 — Résumé</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon">🌐</span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <span class="badge">2</span>
+            <span class="form-card__title">Créer la carte de l’enfant</span>
+          </div>
+          <div class="form-card__subtitle">
+            Choisis le scénario puis renseigne les informations de base.
+          </div>
+        </div>
+
+        <form class="genidoc-form" action="#" method="post" enctype="multipart/form-data" novalidate>
+          <!-- Radios (cachés) -->
+          <input class="scenario-input" type="radio" name="genidoc_scenario" id="scenario-carnet"
+            value="CARNET_EXISTANT" checked />
+          <input class="scenario-input" type="radio" name="genidoc_scenario" id="scenario-nouveau" value="NOUVEAU_NE" />
+
+          <!-- Choix scénario -->
+          <div class="section-title">Choisir un scénario</div>
+
+          <div class="cards-grid scenario-grid">
+            <label for="scenario-carnet" class="card card-2 scenario-card">
+              <div class="card__hero card__hero--blue">
+                <div class="card__hero-header">
+                  <span>Option A</span>
+                  <span>📘</span>
+                </div>
+                <div class="card__job-title">Enfant déjà né</div>
+                <div class="card__desc">
+                  Carnet / cahier physique existe (scan recommandé).
+                </div>
+              </div>
+
+              <div class="card__footer">
+                <div class="card__job-summary">
+                  <span>Scan carnet</span>
+                  <span class="badge">✓</span>
+                </div>
+                <div class="card__btn">Sélectionner</div>
+              </div>
+            </label>
+
+            <label for="scenario-nouveau" class="card card-1 scenario-card">
+              <div class="card__hero card__hero--green">
+                <div class="card__hero-header">
+                  <span>Option B</span>
+                  <span>🍼</span>
+                </div>
+                <div class="card__job-title">Nouveau-né</div>
+                <div class="card__desc">
+                  Pas de carnet physique (création directe de la carte).
+                </div>
+              </div>
+
+              <div class="card__footer">
+                <div class="card__job-summary">
+                  <span>Carte directe</span>
+                  <span class="badge">✓</span>
+                </div>
+                <div class="card__btn">Sélectionner</div>
+              </div>
+            </label>
+          </div>
+
+          <!-- Panels (affichés selon le scénario) -->
+          <div class="step2-panels">
+            <div class="panel panel-carnet">
+              <div class="section-title">Scanner le carnet (si existant)</div>
+
+              <div class="upload-box">
+                <div class="upload-box__title">Ajouter le scan du carnet</div>
+                <div class="upload-box__desc">
+                  Formats acceptés: PDF, JPG, PNG. Plusieurs fichiers autorisés.
+                </div>
+
+                <input type="file" id="genidoc_carnet_files" name="genidoc_carnet_files" accept=".pdf,.jpg,.jpeg,.png"
+                  multiple />
+
+                <div class="checkbox-row checkbox-row--soft">
+                  <input type="checkbox" id="genidoc_scan_later" name="genidoc_scan_later" />
+                  <label for="genidoc_scan_later">
+                    Je fournirai le carnet plus tard (créer la carte quand même)
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-nouveau">
+              <div class="section-title">Nouveau-né</div>
+              <div class="hint-box">
+                Aucun scan requis. On crée directement la carte numérique.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <!-- Infos enfant -->
+          <div class="section-title">Informations de base</div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="enfant_nom">Nom *</label>
+              <input type="text" id="enfant_nom" name="enfant_nom" placeholder="Nom" required />
+            </div>
+
+            <div class="form-field">
+              <label for="enfant_prenom">Prénom *</label>
+              <input type="text" id="enfant_prenom" name="enfant_prenom" placeholder="Prénom" required />
+            </div>
+
+            <div class="form-field">
+              <label for="enfant_date_naissance">Date de naissance *</label>
+              <input type="date" id="enfant_date_naissance" name="enfant_date_naissance" required />
+            </div>
+
+            <div class="form-field">
+              <label for="enfant_sexe">Sexe *</label>
+              <select id="enfant_sexe" name="enfant_sexe" required>
+                <option value="" selected disabled>Choisir</option>
+                <option value="M">M</option>
+                <option value="F">F</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="enfant_groupe_sanguin">Groupe sanguin</label>
+              <select id="enfant_groupe_sanguin" name="enfant_groupe_sanguin">
+                <option value="INCONNU" selected>Inconnu</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="enfant_lieu_naissance">Lieu de naissance</label>
+              <input type="text" id="enfant_lieu_naissance" name="enfant_lieu_naissance" placeholder="Optionnel" />
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <!-- Parents -->
+          <div class="section-title">Parents (mère / père)</div>
+
+          <div class="hint-box">
+            Coche si tu es la mère et/ou le père. Si le père est une autre personne, tu peux saisir son email.
+          </div>
+
+          <div class="parents-grid">
+            <div class="checkbox-row">
+              <input type="checkbox" id="is_mere" name="is_mere" />
+              <label for="is_mere">Je suis la mère</label>
+            </div>
+
+            <div class="checkbox-row">
+              <input type="checkbox" id="is_pere" name="is_pere" />
+              <label for="is_pere">Je suis le père</label>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label for="pere_email">Email du père (si différent)</label>
+              <input type="email" id="pere_email" name="pere_email" placeholder="Optionnel" />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <a class="btn-secondary" href="./step1-profile.html">Retour</a>
+            <button type="submit" class="card__btn">Créer la carte et continuer</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/shared.js"></script>
+  <script>
+    document.querySelector('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const btn = form.querySelector('button');
+
+      // 1. Création de l'enfant (Step 1 Onboarding Tuteur en backend)
+      const enfantData = {
+        nom: document.getElementById('enfant_nom').value,
+        prenom: document.getElementById('enfant_prenom').value,
+        date_naissance: document.getElementById('enfant_date_naissance').value,
+        sexe: document.getElementById('enfant_sexe').value,
+        groupe_sanguin: document.getElementById('enfant_groupe_sanguin').value
+      };
+
+      btn.textContent = 'Création enfant...'; btn.disabled = true;
+      try {
+        // Créer l'enfant
+        await window.genidocApi.tuteur.step1(enfantData);
+
+        // 2. Upload du carnet (Step 2 Onboarding Tuteur en backend)
+        const scenario = document.querySelector('input[name="genidoc_scenario"]:checked').value;
+        const scanFile = document.getElementById('genidoc_carnet_files').files[0];
+
+        const uploadData = new FormData();
+        uploadData.append('mode', scenario === 'CARNET_EXISTANT' ? 'SCAN' : 'NEWBORN');
+        if (scanFile) {
+          uploadData.append('carnet_scan', scanFile);
+        }
+
+        btn.textContent = 'Upload carnet...';
+        await window.genidocApi.tuteur.step2(uploadData);
+
+        window.location.href = './step3-profil.html';
+      } catch (err) {
+        alert('Erreur : ' + err.message);
+      } finally {
+        btn.textContent = "Créer la carte et continuer"; btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+
+</html>

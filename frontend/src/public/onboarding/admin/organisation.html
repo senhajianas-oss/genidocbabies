@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organisation</title>
+  <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Admin — Organisation</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row">
+          <span id="genidoc_id1">Rôle :</span><span>Admin</span>
+        </div>
+        <div class="info-row">
+          <span id="genidoc_id1">Organisation :</span><span>—</span>
+        </div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./index.html">Dashboard</a>
+        <a href="./pediatres-validation.html">Validation pédiatres</a>
+        <a href="./medecins.html">Médecins</a>
+        <a href="./organisation.html" aria-current="page">Organisation</a>
+        <a href="./rapports.html">Rapports</a>
+        <a href="./settings.html">Paramètres</a>
+        <a href="../../auth/login.html">Déconnexion</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon">
+          <img src="/frontend/src/static/hayat.svg" alt="Langue" />
+        </span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <span class="badge">🏥</span>
+            <span class="form-card__title">Paramètres organisation</span>
+          </div>
+          <div class="form-card__subtitle">
+            Mettre à jour infos + règles de validation.
+          </div>
+        </div>
+
+        <form class="genidoc-form" action="#" method="post" enctype="multipart/form-data" novalidate>
+          <div class="section-title">Informations</div>
+
+          <div class="form-grid">
+            <div class="form-field form-field--full">
+              <label for="org_nom">Nom *</label>
+              <input id="org_nom" name="org_nom" type="text" value="—" required />
+            </div>
+
+            <div class="form-field">
+              <label for="org_type">Type *</label>
+              <select id="org_type" name="org_type" required>
+                <option value="" disabled selected>Choisir</option>
+                <option value="CLINIQUE">Clinique</option>
+                <option value="HOPITAL">Hôpital</option>
+                <option value="CENTRE">Centre</option>
+                <option value="RESEAU">Réseau</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="org_ville">Ville *</label>
+              <input id="org_ville" name="org_ville" type="text" value="—" required />
+            </div>
+
+            <div class="form-field form-field--full">
+              <label for="org_adresse">Adresse</label>
+              <input id="org_adresse" name="org_adresse" type="text" value="—" />
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="section-title">Règles</div>
+
+          <div class="form-grid">
+            <div class="form-field form-field--full">
+              <label for="validation_mode">Validation des pédiatres *</label>
+              <select id="validation_mode" name="validation_mode" required>
+                <option value="OBLIGATOIRE" selected>Obligatoire</option>
+                <option value="AUTO">Automatique</option>
+              </select>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label for="domaines_email">Domaines email autorisés (optionnel)</label>
+              <input id="domaines_email" name="domaines_email" type="text" placeholder="ex: clinique.ma, hopital.ma" />
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="section-title">Documents</div>
+
+          <div class="upload-box">
+            <div class="upload-box__title">Ajouter / remplacer un document (optionnel)</div>
+            <div class="upload-box__desc">PDF, JPG, PNG.</div>
+            <input type="file" name="org_doc" accept=".pdf,.jpg,.jpeg,.png" />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="card__btn">Enregistrer</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

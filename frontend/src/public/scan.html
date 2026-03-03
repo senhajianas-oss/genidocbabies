@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traitement du Scan - GeniDoc</title>
+    <link rel="stylesheet" href="assets/auth.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f0f4f8;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .scan-msg {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1fa2ff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scan-msg">
+        <div class="loader"></div>
+        <h2>GeniDoc Hayat</h2>
+        <p id="status">Vérification de l'accès...</p>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const patientId = params.get('id');
+        const statusEl = document.getElementById('status');
+
+        if (!patientId) {
+            statusEl.textContent = "Erreur: Pas d'ID patient détecté.";
+        } else {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                statusEl.textContent = "Authentification requise. Redirection...";
+                setTimeout(() => {
+                    const currentUrl = window.location.href;
+                    window.location.href = `auth/login.html?returnUrl=${encodeURIComponent(currentUrl)}`;
+                }, 1000);
+            } else {
+                statusEl.textContent = "Accès autorisé. Chargement du dossier...";
+                setTimeout(() => {
+                    window.location.href = `dashboard/pediatre/patient_record.html?id=${patientId}`;
+                }, 800);
+            }
+        }
+    </script>
+</body>
+
+</html>

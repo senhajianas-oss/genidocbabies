@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding Tuteur - Étape 3</title>
+  <link rel="stylesheet" href="/frontend/src/public/onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Tuteur — Étape 3/3</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row">
+          <span id="genidoc_id1">Rôle :</span>
+          <span>Tuteur</span>
+        </div>
+
+        <div class="info-row">
+          <span id="genidoc_id1">Étape :</span>
+          <span>Résumé</span>
+        </div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./step1-profile.html">Étape 1 — Profil</a>
+        <a href="./step2-enfant.html">Étape 2 — Enfant & carnet</a>
+        <a href="#" aria-current="page">Étape 3 — Résumé</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon">🌐</span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <span class="badge">3</span>
+            <span class="form-card__title">Résumé & finalisation</span>
+          </div>
+          <div class="form-card__subtitle">
+            Vérifie les informations puis accède à ton dashboard.
+          </div>
+        </div>
+
+        <div class="genidoc-form">
+          <div class="section-title">Profil tuteur</div>
+
+          <div class="summary-grid">
+            <div class="summary-item">
+              <div class="summary-label">Téléphone</div>
+              <div class="summary-value">—</div>
+            </div>
+
+            <div class="summary-item">
+              <div class="summary-label">Ville</div>
+              <div class="summary-value">—</div>
+            </div>
+
+            <div class="summary-item summary-item--full">
+              <div class="summary-label">Adresse</div>
+              <div class="summary-value">—</div>
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="section-title">Carte enfant</div>
+
+          <div class="summary-grid">
+            <div class="summary-item">
+              <div class="summary-label">Nom</div>
+              <div class="summary-value">—</div>
+            </div>
+
+            <div class="summary-item">
+              <div class="summary-label">Prénom</div>
+              <div class="summary-value">—</div>
+            </div>
+
+            <div class="summary-item">
+              <div class="summary-label">Date naissance</div>
+              <div class="summary-value">—</div>
+            </div>
+
+            <div class="summary-item">
+              <div class="summary-label">Sexe</div>
+              <div class="summary-value">—</div>
+            </div>
+
+            <div class="summary-item">
+              <div class="summary-label">Groupe sanguin</div>
+              <div class="summary-value">INCONNU</div>
+            </div>
+
+            <div class="summary-item">
+              <div class="summary-label">Carnet</div>
+              <div class="summary-value">
+                <span class="status-pill status-pill--pending">En attente</span>
+              </div>
+            </div>
+
+            <div class="summary-item summary-item--full">
+              <div class="summary-label">Parents</div>
+              <div class="summary-value">Mère: — | Père: —</div>
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="hint-box">
+            Si le carnet est en attente, tu peux le télécharger plus tard depuis ton dashboard.
+          </div>
+
+          <div class="form-actions">
+            <a class="btn-secondary" href="./step2-enfant.html">Retour</a>
+            <a class="card__btn" href="../../dashboard/tuteur/index.html">Accéder au Dashboard</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  </div>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/shared.js"></script>
+  <script>
+    document.querySelector('.card__btn').addEventListener('click', async (e) => {
+      e.preventDefault();
+      const btn = e.target;
+
+      btn.textContent = 'Activation...'; btn.disabled = true;
+      try {
+        await window.genidocApi.tuteur.step3();
+        window.location.href = '../../dashboard/tuteur/index.html';
+      } catch (err) {
+        alert('Erreur : ' + err.message);
+      } finally {
+        btn.textContent = "Accéder au Dashboard"; btn.disabled = false;
+      }
+    });
+
+    async function loadSummary() {
+      try {
+        const data = await window.genidocApi.getMe();
+        // Optionnel: remplir les champs du résumé ici
+      } catch (e) { }
+    }
+    document.addEventListener('DOMContentLoaded', loadSummary);
+  </script>
+  <style>
+    /* mini-ajouts inline pour step3, sans toucher au fichier CSS global */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .summary-item {
+      border: 1px solid rgba(10, 56, 108, 0.12);
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .summary-item--full {
+      grid-column: 1 / -1;
+    }
+
+    .summary-label {
+      font-size: 12px;
+      font-weight: 900;
+      color: #0a386c;
+      margin-bottom: 6px;
+    }
+
+    .summary-value {
+      font-size: 14px;
+      color: #2d3748;
+      font-weight: 700;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      border: 1px solid rgba(10, 56, 108, 0.15);
+    }
+
+    .status-pill--ok {
+      background: #e9f9ef;
+      color: #166534;
+      border-color: rgba(34, 197, 94, 0.25);
+    }
+
+    .status-pill--pending {
+      background: #fff7ed;
+      color: #92400e;
+      border-color: rgba(245, 158, 11, 0.25);
+    }
+  </style>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paramètres</title>
+  <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Tuteur — Paramètres</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row"><span id="genidoc_id1">Rôle :</span><span>Tuteur</span></div>
+        <div class="info-row"><span id="genidoc_id1">Sécurité :</span><span>—</span></div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./index.html">Dashboard</a>
+        <a href="./enfants.html">Mes enfants</a>
+        <a href="./carnet-upload.html">Carnet & scans</a>
+        <a href="./rendezvous.html">Rendez-vous</a>
+        <a href="./profil.html">Mon profil</a>
+        <a href="./settings.html" aria-current="page">Paramètres</a>
+        <a href="../../auth/login.html">Déconnexion</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon">🌐</span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <span class="badge">⚙️</span>
+            <span class="form-card__title">Paramètres du compte</span>
+          </div>
+          <div class="form-card__subtitle">Mot de passe, notifications, confidentialité.</div>
+        </div>
+
+        <form class="genidoc-form" action="#" method="post" novalidate>
+          <div class="section-title">Changer le mot de passe</div>
+
+          <div class="form-grid">
+            <div class="form-field form-field--full">
+              <label for="old_password">Ancien mot de passe *</label>
+              <input id="old_password" name="old_password" type="password" required />
+            </div>
+
+            <div class="form-field">
+              <label for="new_password">Nouveau *</label>
+              <input id="new_password" name="new_password" type="password" required />
+            </div>
+
+            <div class="form-field">
+              <label for="confirm_password">Confirmer *</label>
+              <input id="confirm_password" name="confirm_password" type="password" required />
+            </div>
+          </div>
+
+          <div class="form-actions" style="justify-content:flex-end;">
+            <button type="submit" class="card__btn">Mettre à jour</button>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="section-title">Notifications</div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="notif_rdv" name="notif_rdv" />
+            <label for="notif_rdv">Rappels rendez-vous</label>
+          </div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="notif_vaccin" name="notif_vaccin" />
+            <label for="notif_vaccin">Rappels vaccination</label>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="section-title">Compte</div>
+
+          <div class="hint-box">
+            Pour supprimer ton compte, l’action doit être confirmée côté backend (sécurité).
+          </div>
+
+          <div class="form-actions" style="justify-content:flex-end;">
+            <button type="button" class="btn-secondary">Demander suppression</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

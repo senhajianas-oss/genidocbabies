@@ -1,0 +1,15 @@
+{
+  "name": "genidocbabies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node backend/seed_test_data.js",
+    "start": "npm start --prefix backend",
+    "dev": "npm run dev --prefix backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

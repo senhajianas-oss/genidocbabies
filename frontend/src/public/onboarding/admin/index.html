@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Admin</title>
+  <link rel="stylesheet" href="../../onboarding/tuteur/step1-profil.css" />
+</head>
+
+<body>
+  <header class="page-header">
+    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <div class="page-header__divider"></div>
+    <h1 class="page-header__title">Dashboard — Admin</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <section class="info-section">
+        <div class="info-row">
+          <span id="genidoc_id1">Organisation :</span>
+          <span>—</span>
+        </div>
+        <div class="info-row">
+          <span id="genidoc_id1">Rôle :</span>
+          <span>Admin</span>
+        </div>
+        <div class="info-row">
+          <span id="genidoc_id1">Demandes :</span>
+          <span>—</span>
+        </div>
+      </section>
+
+      <hr class="separateur sep2" />
+
+      <nav class="menu">
+        <a href="./index.html" aria-current="page">Dashboard</a>
+        <a href="./pediatres-validation.html">Validation pédiatres</a>
+        <a href="./medecins.html">Médecins</a>
+        <a href="./organisation.html">Organisation</a>
+        <a href="./rapports.html">Rapports</a>
+        <a href="./settings.html">Paramètres</a>
+        <a href="../../auth/login.html">Déconnexion</a>
+      </nav>
+
+      <div class="langue">
+        <span class="langue-icon"><img src="/frontend/static/world.png" alt="" class="genidoc_world"></span>
+        <select aria-label="Langue">
+          <option value="fr" selected>FR</option>
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="form-card">
+        <div class="form-card__header">
+          <div class="form-card__kpi">
+            <span class="badge">★</span>
+            <span class="form-card__title">Pilotage organisme</span>
+          </div>
+          <div class="form-card__subtitle">
+            Valide les pédiatres, gère les médecins et configure l’organisation.
+          </div>
+        </div>
+
+        <div class="genidoc-form">
+          <div class="cards-grid">
+            <a class="card card-3 card-3" href="./pediatres-validation.html">
+              <div class="card__hero card__hero--red">
+                <div class="card__hero-header">
+                  <span>Validation</span>
+                  <span>✅</span>
+                </div>
+                <div class="card__job-title">Demandes pédiatres</div>
+                <div class="card__desc">Approuver / refuser les profils.</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary">
+                  <span>Traiter</span><span class="badge">→</span>
+                </div>
+                <div class="card__btn">Ouvrir</div>
+              </div>
+            </a>
+
+            <a class="card card-2 card-2" href="./medecins.html">
+              <div class="card__hero card__hero--blue">
+                <div class="card__hero-header">
+                  <span>Gestion</span>
+                  <span>👨‍⚕️</span>
+                </div>
+                <div class="card__job-title">Médecins</div>
+                <div class="card__desc">Liste, détails, invitations.</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary">
+                  <span>Accéder</span><span class="badge">→</span>
+                </div>
+                <div class="card__btn">Ouvrir</div>
+              </div>
+            </a>
+
+            <a class="card card-1 card-1" href="./organisation.html">
+              <div class="card__hero card__hero--green">
+                <div class="card__hero-header">
+                  <span>Config</span>
+                  <span>🏥</span>
+                </div>
+                <div class="card__job-title">Organisation</div>
+                <div class="card__desc">Règles, documents, paramètres.</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary">
+                  <span>Configurer</span><span class="badge">→</span>
+                </div>
+                <div class="card__btn">Ouvrir</div>
+              </div>
+            </a>
+
+            <a class="card card-4 card-4" href="./rapports.html">
+              <div class="card__hero card__hero--gray">
+                <div class="card__hero-header">
+                  <span>Stats</span>
+                  <span>📊</span>
+                </div>
+                <div class="card__job-title">Rapports</div>
+                <div class="card__desc">Suivi activité & exports.</div>
+              </div>
+              <div class="card__footer">
+                <div class="card__job-summary">
+                  <span>Voir</span><span class="badge">→</span>
+                </div>
+                <div class="card__btn">Ouvrir</div>
+              </div>
+            </a>
+          </div>
+
+          <hr class="separateur sep2" />
+
+          <div class="section-title">Inviter un pédiatre</div>
+
+          <form action="#" method="post">
+            <div class="form-grid">
+              <div class="form-field form-field--full">
+                <label for="invite_email">Email *</label>
+                <input type="email" id="invite_email" name="invite_email" placeholder="ex: docteur@..." required />
+              </div>
+              <div class="form-field">
+                <label for="invite_nom">Nom</label>
+                <input type="text" id="invite_nom" name="invite_nom" placeholder="Optionnel" />
+              </div>
+              <div class="form-field">
+                <label for="invite_prenom">Prénom</label>
+                <input type="text" id="invite_prenom" name="invite_prenom" placeholder="Optionnel" />
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="card__btn">Envoyer l’invitation</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

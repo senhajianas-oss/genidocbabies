@@ -1,0 +1,1089 @@
+/* =========================================================
+   VARIABLES "BIG TECH" (Couleurs, Ombres, Transparences)
+   ========================================================= */
+:root {
+  --blue-akdital: #0a386c;
+  --blue-hover: #132f8b;
+  --bg-app: #f8fafc;
+  /* Gris très clair, plus chic que f5f5f5 */
+  --surface: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+
+  /* Le secret des grandes apps : les ombres superposées */
+  --shadow-sm: 0 1px 2px rgba(10, 56, 108, 0.04);
+  --shadow-md: 0 4px 12px rgba(10, 56, 108, 0.05), 0 1px 2px rgba(10, 56, 108, 0.04);
+  --shadow-lg: 0 12px 24px -4px rgba(10, 56, 108, 0.08), 0 4px 10px -2px rgba(10, 56, 108, 0.04);
+  --shadow-glow: 0 0 20px rgba(10, 56, 108, 0.15);
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --transition: 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* =========================================================
+   REMPLACEMENT DES MARGES NÉGATIVES PAR UN FLUX MODERNE
+   ========================================================= */
+img {
+  height: 240px;
+  /* Taille ajustée pour avatar moderne */
+  width: 240px;
+  object-fit: cover;
+  display: inline-block;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+img:hover {
+  transform: scale(1.02);
+}
+
+.logo-akdital {
+  height: 48px;
+  /* Taille élégante type SaaS */
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 32px;
+  /* Remplace les -370px */
+  filter: drop-shadow(0 4px 6px rgba(10, 56, 108, 0.1));
+  transition: opacity var(--transition);
+}
+
+.logo-akdital:hover {
+  opacity: 0.8;
+}
+
+body {
+  background-color: var(--bg-app);
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  /* Rendu typo Apple */
+}
+
+h1 {
+  /* Effet Wow : Texte en dégradé subtil */
+  background: linear-gradient(135deg, var(--blue-akdital) 0%, #2563eb 100%);
+  -webkit-background-clip: text;
+  text-align: center;
+  -webkit-text-fill-color: transparent;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0 0 8px 0;
+  /* Remplace les -215px */
+}
+
+/* ── En-tête de page : logo + titre côte à côte ────────────── */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 64px;
+  /* ← épaisseur fixe, ne change jamais */
+  padding: 0 24px;
+  /* pas de padding vertical = hauteur = height */
+  box-sizing: border-box;
+  overflow: hidden;
+  /* logo plus grand que la bande ? clipé proprement */
+  background: #ffffff;
+  border-bottom: 1px solid rgba(10, 56, 108, .09);
+  box-shadow: 0 1px 6px rgba(10, 56, 108, .06);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.page-header__logo {
+  height: 240px !important;
+  width: auto !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(10, 56, 108, .10));
+  transition: opacity .2s ease;
+}
+
+.page-header__logo:hover {
+  opacity: .85;
+  transform: none;
+}
+
+.page-header__title {
+  font-size: 20px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--blue-akdital) 0%, #2563eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  letter-spacing: -.3px;
+  line-height: 1.2;
+}
+
+.page-header__divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(10, 56, 108, .15);
+  flex-shrink: 0;
+}
+
+
+#genidoc_id1 {
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.2px;
+}
+
+.parametresgenidoc,
+.notificationsgenidoc,
+.aidegenidoc,
+.deconnexiongenidoc {
+  height: 24px;
+  width: 24px;
+  margin: 0;
+  display: inline-block;
+  color: var(--text-muted);
+  transition: transform var(--transition), color var(--transition);
+  cursor: pointer;
+}
+
+.parametresgenidoc:hover,
+.notificationsgenidoc:hover,
+.aidegenidoc:hover,
+.deconnexiongenidoc:hover {
+  transform: translateY(-2px);
+  color: var(--blue-akdital);
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  /* Les boutons prennent toute la largeur */
+  margin-bottom: 40px;
+  list-style: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+nav a:hover,
+nav a:focus {
+  background: rgba(10, 56, 108, 0.05);
+  color: var(--blue-akdital);
+  transform: translateX(4px);
+  /* Petit effet de glissement luxueux */
+  text-decoration: none;
+}
+
+main {
+  margin: 20px 40px;
+  /* Espacement respirant */
+  max-width: 1400px;
+  /* Contraint la largeur sur les très grands écrans */
+}
+
+section {
+  text-align: left;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+.icon.user-icon,
+.icon.hospital-icon,
+.icon.calendar-icon {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  opacity: 0.7;
+}
+
+.separateur {
+  height: 1px;
+  /* Plus net que 0.5px */
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(10, 56, 108, 0.15), transparent);
+  margin: 32px 0;
+  border: none;
+}
+
+/* Composant "Pill" moderne type Apple */
+.langue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+  padding: 8px 16px;
+  border: 1px solid rgba(10, 56, 108, 0.1);
+  border-radius: 999px;
+  /* Pill shape parfaite */
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  /* Glassmorphism */
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.langue:hover {
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(10, 56, 108, 0.2);
+}
+
+.langue .langue-icon,
+.langue img {
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  /* Mieux pour les drapeaux */
+}
+
+.langue select {
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+/* =========================================================
+   GRILLES ET CARTES (Style Stripe / Modern Dashboard)
+   ========================================================= */
+.dashboard {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 40px;
+  margin: 20px 0;
+}
+
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: var(--surface);
+  padding: 24px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(10, 56, 108, 0.05);
+}
+
+.cards-grid {
+  margin: 0 0 40px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  /* Rendu hyper fluide */
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  margin: 0;
+  width: 100%;
+  /* S'adapte à la grille */
+  aspect-ratio: auto;
+  /* Supprimé le 1/1 pour éviter les textes coupés */
+  min-height: 260px;
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 0;
+  /* Padding géré dans les enfants */
+  color: var(--text-main);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(10, 56, 108, 0.05);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card__hero {
+  padding: 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  flex-grow: 1;
+}
+
+/* Couleurs de fond Premium Pastels */
+.card__hero--green {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+.card__hero--blue {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.card__hero--red {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+}
+
+.card__hero--gray {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.card__hero .card__job-title {
+  margin: 16px 0 8px;
+  font-size: 28px;
+  /* Plus grand, plus bold */
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--text-main);
+}
+
+.card__hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.card__footer {
+  padding: 16px 24px;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.card__job-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.card__btn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  background-color: var(--text-main);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card__btn:hover {
+  background-color: var(--blue-akdital);
+  box-shadow: 0 6px 12px rgba(10, 56, 108, 0.2);
+  transform: translateY(-1px);
+}
+
+.card__icon img,
+.genidoc_stethoscope,
+.genidoc_doctor,
+.genidoc_check,
+.genidoc_user,
+.genidoc_graph,
+.genidoc_hospital,
+.genidoc_settings,
+.genidoc_list {
+  width: 32px !important;
+  height: 32px !important;
+  padding: 10px !important;
+}
+
+.card__kpi {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ← icône + titre sur la même ligne dans les form-cards */
+.form-card__kpi {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* =========================================================
+   COMPOSANT COMPLEXE (Vaccination / Articles)
+   ========================================================= */
+.vaccination_genidoc {
+  background: linear-gradient(135deg, var(--blue-akdital) 0%, #1e40af 100%);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(10, 56, 108, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Effet de brillance type Apple Card */
+.vaccination_genidoc::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.vaccination_genidoc:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(10, 56, 108, 0.4);
+}
+
+.vaccination_genidoc__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.vaccination_genidoc__desc {
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Bouton ultra-premium "Pro Link" */
+.vaccination_genidoc__link.pro-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  /* Forme pilule parfaite */
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all var(--transition);
+}
+
+.vaccination_genidoc__link.pro-link:hover {
+  background: rgba(255, 255, 255, 1);
+  color: var(--blue-akdital);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.vaccination_genidoc__link.pro-link .pro-link__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition);
+}
+
+.vaccination_genidoc__link.pro-link:hover .pro-link__icon {
+  transform: translateX(4px);
+}
+
+/* Mini-cartes fluides */
+.articles_genidoc_obligatoires {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.suivi_staturo_psychomoteur_genidoc,
+.la_prevention_et_le_depistage_genidoc {
+  border-radius: var(--radius-md);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.suivi_staturo_psychomoteur_genidoc {
+  background: linear-gradient(135deg, #f0fdf4, #ffffff);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.la_prevention_et_le_depistage_genidoc {
+  background: linear-gradient(135deg, #fffbeb, #ffffff);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.suivi_staturo_psychomoteur_genidoc:hover,
+.la_prevention_et_le_depistage_genidoc:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.mini-card__title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.mini-card__desc {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.mini-card__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.mini-card__btn {
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--blue-akdital);
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.mini-card__btn:hover {
+  background: var(--blue-hover);
+  box-shadow: 0 4px 12px rgba(10, 56, 108, 0.2);
+}
+
+.mini-card__btn--ghost {
+  background: transparent;
+  color: var(--blue-akdital);
+  border: 1px solid rgba(10, 56, 108, 0.2);
+}
+
+.mini-card__btn--ghost:hover {
+  background: rgba(10, 56, 108, 0.05);
+}
+
+/* =========================================================
+   FORMULAIRES (Le focus ring magique d'Apple/Stripe)
+   ========================================================= */
+.form-card {
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(10, 56, 108, 0.08);
+  overflow: hidden;
+  /* Pour border-radius propre avec le header */
+}
+
+.form-card__header {
+  background: #f8fafc;
+  padding: 24px;
+  border-bottom: 1px solid rgba(10, 56, 108, 0.08);
+}
+
+.form-card__title {
+  display: flex;
+  /* ← icône + texte sur la même ligne */
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  color: var(--text-main);
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+
+
+.form-card__subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.genidoc-form {
+  padding: 24px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.form-field--full {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-field input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  font-size: 15px;
+  color: var(--text-main);
+  transition: all var(--transition);
+  box-sizing: border-box;
+  /* Important pour que l'input ne dépasse pas */
+}
+
+.form-field input:focus {
+  outline: none;
+  border-color: var(--blue-akdital);
+  /* Le Focus Ring "WOW" */
+  box-shadow: 0 0 0 4px rgba(10, 56, 108, 0.15);
+}
+
+.form-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  margin: 24px 0;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--blue-akdital);
+  /* Design moderne natif */
+  cursor: pointer;
+}
+
+.checkbox-row label {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.form-actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.disabled-link {
+  opacity: .45;
+  pointer-events: none;
+  filter: grayscale(1);
+  /* Ajoute un feedback visuel premium pour l'état désactivé */
+}
+
+/* ── Section title ─────────────────────────────────────────── */
+.section-title {
+  font-size: 13px;
+  font-weight: 900;
+  color: #0a386c;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin: 14px 0 8px;
+}
+
+/* ── Badge (step number / icon tag) ───────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: #0a386c;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* ── Select inside form-field ──────────────────────────────── */
+.form-field select {
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(10, 56, 108, .18);
+  outline: none;
+  background: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  color: #141417;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.form-field select:focus {
+  border-color: rgba(10, 56, 108, .35);
+  box-shadow: 0 0 0 4px rgba(10, 56, 108, .08);
+}
+
+/* ── Upload box ────────────────────────────────────────────── */
+.upload-box {
+  border: 1.5px dashed rgba(10, 56, 108, .22);
+  border-radius: 14px;
+  background: #f8fbff;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.upload-box__title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0a386c;
+}
+
+.upload-box__desc {
+  font-size: 12px;
+  color: #4a5568;
+  opacity: .85;
+}
+
+.upload-box input[type="file"] {
+  font-size: 13px;
+  color: #2d3748;
+}
+
+/* ── Hint box ──────────────────────────────────────────────── */
+.hint-box {
+  background: #fff7ed;
+  border: 1px solid rgba(245, 158, 11, .22);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #92400e;
+  line-height: 1.45;
+}
+
+/* ── Secondary button ──────────────────────────────────────── */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  border-radius: 1rem;
+  border: 1.5px solid rgba(10, 56, 108, .25);
+  background: transparent;
+  color: #0a386c;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .18s ease, border-color .18s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(10, 56, 108, .06);
+  border-color: rgba(10, 56, 108, .40);
+}
+
+/* ── Scenario grid (step2 card selector) ──────────────────── */
+.scenario-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 600px) {
+  .scenario-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Scenario card: radio-driven selection state */
+.scenario-input {
+  display: none;
+}
+
+.scenario-card {
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+#scenario-carnet:checked~.scenario-grid .card-2.scenario-card,
+#scenario-nouveau:checked~.scenario-grid .card-1.scenario-card {
+  border-color: #0a386c;
+  box-shadow: 0 0 0 3px rgba(10, 56, 108, .15);
+}
+
+/* Panels shown conditionally via CSS */
+.step2-panels .panel {
+  display: none;
+}
+
+#scenario-carnet:checked~.step2-panels .panel-carnet {
+  display: block;
+}
+
+#scenario-nouveau:checked~.step2-panels .panel-nouveau {
+  display: block;
+}
+
+/* ── Parents grid ──────────────────────────────────────────── */
+.parents-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* ── Checkbox row soft variant ─────────────────────────────── */
+.checkbox-row--soft {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: rgba(10, 56, 108, .04);
+  border-radius: 10px;
+  border: 1px solid rgba(10, 56, 108, .10);
+}
+
+/* ── form-actions multi-button spacing ─────────────────────── */
+.form-actions {
+  gap: 10px;
+}
+
+/* Petits ajustements pour la barre latérale */
+.sidebar .articles_genidoc_obligatoires {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar .articles_genidoc_obligatoires>article {
+  padding: 16px !important;
+}
+
+/* Placeholders demandés */
+.logo-placeholder {
+  background: transparent;
+}
+
+.profile-img-placeholder {
+  max-width: 100%;
+  height: auto;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.info-section {
+  margin-bottom: 24px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.menu {
+  margin-top: 0;
+}
+
+.sep2 {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.05);
+  margin: 24px 0;
+}
+
+:root {
+  /* ... tes variables existantes ... */
+  --focus-ring: 0 0 0 4px rgba(10, 56, 108, 0.15);
+}
+
+/* 1. Reset ciblé au lieu de global sur 'img' */
+.avatar-user {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--surface);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.avatar-user:hover {
+  transform: scale(1.04) rotate(2deg);
+  /* Ajout d'une légère rotation pour le dynamisme */
+  box-shadow: var(--shadow-glow);
+}
+
+/* 2. Gestion propre des icônes sans !important */
+.card-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  padding: 10px;
+}
+
+.card-icon-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 3. Amélioration de la Navigation (Interactive) */
+nav a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-weight: 600;
+  transition: all var(--transition);
+}
+
+nav a.active {
+  background: rgba(10, 56, 108, 0.08);
+  color: var(--blue-akdital);
+}
+
+nav a.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 60%;
+  width: 4px;
+  background: var(--blue-akdital);
+  border-radius: 0 4px 4px 0;
+}
+
+/* 4. Formulaire "Stripe-Style" optimisé */
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field input,
+.form-field select {
+  appearance: none;
+  /* Nettoie le style par défaut sur iOS */
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Animation au focus : le champ semble s'élever */
+.form-field input:focus {
+  border-color: var(--blue-akdital);
+  box-shadow: var(--focus-ring);
+  transform: translateY(-1px);
+}
+
+/* 5. Grille de cartes plus intelligente */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Effet Glassmorphism sur la sidebar si nécessaire */
+.sidebar {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.8);
+  position: sticky;
+  /* La sidebar suit le scroll si elle est courte */
+  top: 20px;
+}
+
+/* ── Emoji Replacement Icons ✨ ────────────────────────── */
+.emoji-icon {
+  width: 1.25em;
+  height: 1.25em;
+  vertical-align: middle;
+  object-fit: contain;
+  display: inline-block;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  transition: transform 0.2s ease !important;
+}
+
+.emoji-icon:hover {
+  transform: scale(1.1) !important;
+}
