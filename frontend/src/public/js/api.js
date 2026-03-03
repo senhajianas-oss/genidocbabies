@@ -1,8 +1,8 @@
 // For Production (AWS & Cloudflare deployment)
-const PROD_API_URL = "https://backend-genidoc.votre-sous-domaine.workers.dev"; // Remplacez par votre URL Cloudflare une fois déployé
+const PROD_API_URL = "https://backend.genidoc.ma";
 const LOCAL_IP = "192.168.234.195";
 
-const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
     ? (window.location.port !== '5000' ? `http://${LOCAL_IP}:5000` : "")
     : PROD_API_URL;
 

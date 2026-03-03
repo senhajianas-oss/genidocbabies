@@ -207,7 +207,13 @@
         function showCard(id, name) {
             const modal = document.getElementById('card-modal');
             const LOCAL_IP = "192.168.234.195";
-            const link = `http://${LOCAL_IP}:5000/frontend/src/public/scan.html?id=${id}`;
+
+            // Si on est sur localhost, on utilise l'IP locale, sinon on utilise le domaine final genidochayat.ma
+            const baseUrl = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+                ? `http://${LOCAL_IP}:5000`
+                : "https://genidochayat.ma";
+
+            const link = `${baseUrl}/frontend/src/public/scan.html?id=${id}`;
 
             document.getElementById('modal-patient-name').textContent = name;
             document.getElementById('qr-code-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(link)}`;
