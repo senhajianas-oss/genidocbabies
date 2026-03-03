@@ -9,8 +9,5 @@ frontend:
     baseDirectory: frontend/src/public
     files:
       - '**/*'
-customHttpContent:
-  - rewrite:
-      source: /
-      target: /auth/login.html
-      status: 200
+  cache:
+    paths: []
