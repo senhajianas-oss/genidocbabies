@@ -193,9 +193,30 @@ VALUES (1, 'SENHAJI', 'Anas', '2023-05-15', 'M', 'A+');
 INSERT INTO genidoc_pediatre_enfant (genidoc_enfant_id, genidoc_user_id, code_pediatrie) 
 VALUES (1, 1, 'C1-PED-LAHLOU');
 
--- 5. Catalog
-INSERT INTO genidoc_vaccin_catalog (vaccin_code, vaccin_nom, age_recommande_mois, nb_doses) VALUES 
-('BCG', 'Tuberculose', 0, 1),
-('VHB', 'Hépatite B', 0, 3),
-('DTC', 'Diphtérie, Tétanos, Coqueluche', 2, 3),
-('VPI', 'Polio', 2, 3);
+-- 6. Vaccins Catalog
+INSERT INTO genidoc_vaccin_catalog (genidoc_vaccin_id, vaccin_code, vaccin_nom, age_recommande_mois, nb_doses) VALUES 
+(1, 'BCG', 'Tuberculose', 0, 1),
+(2, 'VHB', 'Hépatite B', 0, 3),
+(3, 'DTC', 'Diphtérie, Tétanos, Coqueluche', 2, 3),
+(4, 'VPI', 'Polio', 2, 3);
+
+-- 7. Medical History for Anas SENHAJI (ID 1)
+
+-- Vitals History
+INSERT INTO genidoc_vital_enfant (genidoc_enfant_id, poids_kg, taille_cm, temperature_c, frequence_cardiaque_bpm, saturation_o2_pct, notes, measured_at) VALUES
+(1, 3.5, 50, 36.6, 120, 99, 'Poids à la naissance', '2023-05-15 10:00:00'),
+(1, 4.2, 53, 36.7, 115, 98, 'Contrôle 1 mois', '2023-06-15 09:30:00'),
+(1, 5.8, 58, 36.5, 110, 100, 'Contrôle 2 mois', '2023-07-15 11:15:00'),
+(1, 7.5, 65, 36.8, 105, 99, 'Contrôle 6 mois', '2023-11-15 10:45:00'),
+(1, 10.2, 75, 36.6, 95, 99, 'Contrôle 12 mois', '2024-05-15 15:00:00');
+
+-- Consultations
+INSERT INTO genidoc_consultation (genidoc_org_id, genidoc_enfant_id, genidoc_pediatre_user_id, motif, diagnostic, ordonnance, notes, consulted_at) VALUES
+(1, 1, 1, 'Fièvre et toux', 'Rhinopharyngite aiguë', 'Paracétamol sirop, Lavage de nez au sérum phy', 'Poumons clairs, pas de signe de détresse', '2024-01-20 14:00:00'),
+(1, 1, 1, 'Bilan 1 an', 'Croissance normale', 'Continuer Vitamine D', 'Développement psychomoteur excellent', '2024-05-15 15:30:00');
+
+-- Vaccinations Done
+INSERT INTO genidoc_vaccination_enfant (genidoc_enfant_id, genidoc_vaccin_id, dose_no, vaccinated_at, lot, genidoc_pediatre_user_id, notes) VALUES
+(1, 1, 1, '2023-05-15 12:00:00', 'LOT-BCG-099', 1, 'Fait à la naissance'),
+(1, 2, 1, '2023-05-15 12:00:00', 'LOT-VHB-881', 1, 'Fait à la naissance'),
+(1, 3, 1, '2023-07-15 11:30:00', 'LOT-DTC-772', 1, 'Légère fièvre après injection');
