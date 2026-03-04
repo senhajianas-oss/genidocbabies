@@ -22,8 +22,10 @@ async function apiFetch(endpoint, options = {}) {
     if (response.status === 401) {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        window.location.href = '/auth/login.html';
-        return;
+        // Ne pas rediriger si on est déjà sur la page de login pour éviter un crash
+        if (!window.location.pathname.includes('/auth/login.html')) {
+            window.location.href = '/auth/login.html';
+        }
     }
 
     let data;

@@ -175,9 +175,8 @@ CREATE TABLE genidoc_vaccination_enfant (
 
 -- Seed Minimal Data
 -- 1. Dr. Lahlou (password: password123)
--- Hash generated for 'password123'
 INSERT INTO genidoc_auth_users (genidoc_user_id, nom, prenom, email, password_hash, role) 
-VALUES (1, 'Lahlou', 'Badreddine', 'dr.lahlou@genidoc.ma', '$2a$10$D68O97hW/A.L6Dgh88K.p.fEIs3X.X8QJ2yTmW/Ew6D6zD6zD6zD6', 'PEDIATRE');
+VALUES (1, 'Lahlou', 'Badreddine', 'dr.lahlou@genidoc.ma', '$2a$10$7Vr4InkOncQ9zLu9IaI.Tu4Asbx2v/E4Gr90zcKSmkpZk08NEP2FC', 'PEDIATRE');
 
 -- 2. Organisation
 INSERT INTO genidoc_organisation (genidoc_org_id, org_nom, org_type, org_ville, org_code, created_by_user_id) 
