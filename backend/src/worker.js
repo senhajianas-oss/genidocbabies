@@ -62,7 +62,7 @@ const authMiddleware = async (request, env) => {
 // Routes: Auth
 router.post('/api/auth/signup', wrap(authCtrl.signup));
 router.post('/api/auth/login', wrap(authCtrl.login));
-router.get('/api/auth/me', authMiddleware, wrap(authCtrl.getMe));
+router.get('/api/auth/me', authMiddleware, wrap(authCtrl.me));
 
 // Routes: Admin
 router.post('/api/admin/onboarding/step1', authMiddleware, wrap(adminCtrl.step1));

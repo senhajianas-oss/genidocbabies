@@ -4,9 +4,10 @@ const db = require("../db");
 const { normalizeRole } = require("../utils/role");
 
 function signToken(user) {
+  const secret = process.env.JWT_SECRET || "genidoc-secret-key-2024";
   return jwt.sign(
     { user_id: user.genidoc_user_id, role: user.role, email: user.email },
-    process.env.JWT_SECRET,
+    secret,
     { expiresIn: process.env.JWT_EXPIRES || "7d" }
   );
 }
