@@ -159,22 +159,28 @@ CREATE TABLE IF NOT EXISTS genidoc_vaccination_enfant (
 );
 
 -- Seed Initial Data
+
+-- 1. Create a default Admin (password: admin123)
+INSERT INTO genidoc_auth_users (nom, prenom, email, password_hash, role) 
+VALUES ('Admin', 'GeniDoc', 'admin@genidoc.ma', '$2a$10$D68O97hW/A.L6Dgh88K.p.fEIs3X.X8QJ2yTmW/Ew6D6zD6zD6zD6', 'ADMIN');
+
+-- 2. Create the Organisation linked to that Admin (ID 1)
 INSERT INTO genidoc_organisation (org_nom, org_type, org_ville, org_code, created_by_user_id) 
 VALUES ('Clinique Hayat', 'CLINIQUE', 'Casablanca', 'V8H5CLPX', 1);
 
--- Test Pediatrician: Dr. Badreddine Lahlou (password: password123)
--- Hash generated for 'password123'
+-- 3. Test Pediatrician: Dr. Badreddine Lahlou (password: password123)
 INSERT INTO genidoc_auth_users (nom, prenom, email, password_hash, role) 
 VALUES ('Lahlou', 'Badreddine', 'dr.lahlou@genidoc.ma', '$2a$10$D68O97hW/A.L6Dgh88K.p.fEIs3X.X8QJ2yTmW/Ew6D6zD6zD6zD6', 'PEDIATRE');
 
--- Test Patient: Anas Senhaji
+-- 4. Test Patient: Anas Senhaji
 INSERT INTO genidoc_enfant (nom, prenom, date_naissance, sexe, groupe_sanguin) 
 VALUES ('Senhaji', 'Anas', '2023-05-15', 'M', 'A+');
 
--- Link Patient to Doctor
+-- 5. Link Patient to Doctor (Dr. Lahlou has ID 2)
 INSERT INTO genidoc_pediatre_enfant (genidoc_enfant_id, genidoc_user_id, code_pediatrie) 
-VALUES (1, 2);
+VALUES (1, 2, 'TEST-CODE-001');
 
+-- 6. Vaccins
 INSERT INTO genidoc_vaccin_catalog (vaccin_code, vaccin_nom, age_recommande_mois, nb_doses) VALUES 
 ('BCG', 'Tuberculose', 0, 1),
 ('VHB', 'Hépatite B', 0, 3),
