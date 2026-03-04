@@ -144,52 +144,61 @@ async function signup(req, res) {
 }
 
 async function login(req, res) {
-  const { email, password } = req.body || {};
-  if (!email || !password) return res.status(400).json({ message: "Email et mot de passe requis" });
+  try {
+    const { email, password } = req.body || {};
+    if (!email || !password) return res.status(400).json({ message: "Email et mot de passe requis" });
 
-  const [rows] = await db.execute(
-    `SELECT genidoc_user_id, nom, prenom, email, password_hash, role
-     FROM genidoc_auth_users
-     WHERE email = :email`,
-    { email: String(email).trim() }
-  );
+    const [rows] = await db.execute(
+      `SELECT genidoc_user_id, nom, prenom, email, password_hash, role
+       FROM genidoc_auth_users
+       WHERE email = :email`,
+      { email: String(email).trim() }
+    );
 
-  if (!rows.length) return res.status(401).json({ message: "Identifiants invalides" });
+    if (!rows || !rows.length) return res.status(401).json({ message: "Identifiants invalides" });
 
-  const u = rows[0];
-  const ok = await bcrypt.compare(password, u.password_hash);
-  if (!ok) return res.status(401).json({ message: "Identifiants invalides" });
+    const u = rows[0];
+    const ok = await bcrypt.compare(password, u.password_hash);
+    if (!ok) return res.status(401).json({ message: "Identifiants invalides" });
 
-  const token = signToken(u);
+    const token = signToken(u);
 
-  const [onb] = await db.execute(
-    "SELECT current_step, is_completed FROM genidoc_onboarding WHERE genidoc_user_id = :uid",
-    { uid: u.genidoc_user_id }
-  );
+    const [onb] = await db.execute(
+      "SELECT current_step, is_completed FROM genidoc_onboarding WHERE genidoc_user_id = :uid",
+      { uid: u.genidoc_user_id }
+    );
 
-  const [mem] = await db.execute(
-    `SELECT uo.genidoc_org_id, uo.status, o.org_code, o.org_nom
-     FROM genidoc_user_organisation uo
-     JOIN genidoc_organisation o ON o.genidoc_org_id = uo.genidoc_org_id
-     WHERE uo.genidoc_user_id = :uid`,
-    { uid: u.genidoc_user_id }
-  );
+    const [mem] = await db.execute(
+      `SELECT uo.genidoc_org_id, uo.status, o.org_code, o.org_nom
+       FROM genidoc_user_organisation uo
+       JOIN genidoc_organisation o ON o.genidoc_org_id = uo.genidoc_org_id
+       WHERE uo.genidoc_user_id = :uid`,
+      { uid: u.genidoc_user_id }
+    );
 
-  return res.json({
-    token,
-    user: { genidoc_user_id: u.genidoc_user_id, nom: u.nom, prenom: u.prenom, email: u.email, role: u.role },
-    onboarding: onb[0] || { current_step: 1, is_completed: 0 },
-    membership: mem[0] || null,
-  });
+    return res.json({
+      token,
+      user: { genidoc_user_id: u.genidoc_user_id, nom: u.nom, prenom: u.prenom, email: u.email, role: u.role },
+      onboarding: (onb && onb[0]) || { current_step: 1, is_completed: 0 },
+      membership: (mem && mem[0]) || null,
+    });
+  } catch (e) {
+    console.error("Login Error:", e);
+    return res.status(500).json({ message: "Erreur serveur (Login)", error: e.message });
+  }
 }
 
 async function me(req, res) {
-  const [rows] = await db.execute(
-    "SELECT genidoc_user_id, nom, prenom, email, role FROM genidoc_auth_users WHERE genidoc_user_id = :uid",
-    { uid: req.user.user_id }
-  );
-  if (!rows.length) return res.status(404).json({ message: "User introuvable" });
-  return res.json({ user: rows[0] });
+  try {
+    const [rows] = await db.execute(
+      "SELECT genidoc_user_id, nom, prenom, email, role FROM genidoc_auth_users WHERE genidoc_user_id = :uid",
+      { uid: req.user.user_id }
+    );
+    if (!rows || !rows.length) return res.status(404).json({ message: "User introuvable" });
+    return res.json({ user: rows[0] });
+  } catch (e) {
+    return res.status(500).json({ message: "Erreur serveur (Me)", error: e.message });
+  }
 }
 
 module.exports = { signup, login, me };

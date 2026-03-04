@@ -20,14 +20,21 @@ async function apiFetch(endpoint, options = {}) {
     });
 
     if (response.status === 401) {
-        // Session expirée
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         window.location.href = '/auth/login.html';
         return;
     }
 
-    const data = await response.json();
+    let data;
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+    } else {
+        const text = await response.text();
+        data = { message: text || `Erreur ${response.status}` };
+    }
+
     if (!response.ok) {
         throw new Error(data.message || 'Une erreur est survenue');
     }
