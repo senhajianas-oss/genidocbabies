@@ -120,7 +120,7 @@
                                 ? `http://${LOCAL_IP}:5000`
                                 : "https://genidoc.ma";
 
-                            const link = baseUrl + "/frontend/src/public/auth/login.html";
+                            const link = baseUrl + "/auth/login.html";
                             document.getElementById('dashboard-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(link)}`;
                         });
                     </script>

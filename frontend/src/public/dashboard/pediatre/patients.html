@@ -213,7 +213,7 @@
                 ? `http://${LOCAL_IP}:5000`
                 : "https://genidochayat.ma";
 
-            const link = `${baseUrl}/frontend/src/public/scan.html?id=${id}`;
+            const link = `${baseUrl}/scan.html?id=${id}`;
 
             document.getElementById('modal-patient-name').textContent = name;
             document.getElementById('qr-code-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(link)}`;
