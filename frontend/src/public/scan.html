@@ -56,11 +56,11 @@
 
     <script>
         const params = new URLSearchParams(window.location.search);
-        const patientId = params.get('id');
+        const patientId = params.get('id') || params.get('token'); // On supporte 'token' comme synonyme de 'id'
         const statusEl = document.getElementById('status');
 
         if (!patientId) {
-            statusEl.textContent = "Erreur: Pas d'ID patient détecté.";
+            statusEl.textContent = "Erreur: Pas d'identifiant détecté.";
         } else {
             const token = localStorage.getItem('token');
             if (!token) {

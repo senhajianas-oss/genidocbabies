@@ -3,15 +3,24 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=/auth/login.html">
     <title>Redirecting...</title>
     <script>
-        window.location.href = "/auth/login.html";
+        const host = window.location.hostname;
+        const params = window.location.search;
+
+        // REDIRECTION LOGIC
+        if (host === 'genidochayat.ma' || host === 'www.genidochayat.ma') {
+            // Si on arrive sur le domaine du QR Code, on redirige vers le domaine principal avec les paramètres
+            window.location.href = "https://genidoc.ma/scan.html" + params;
+        } else {
+            // Sinon (genidoc.ma ou localhost), on va vers le login par défaut
+            window.location.href = "/auth/login.html";
+        }
     </script>
 </head>
 
 <body>
-    If you are not redirected, <a href="/auth/login.html">click here</a>.
+    Redirection en cours...
 </body>
 
 </html>
