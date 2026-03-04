@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Inscription à GeniDoc Babies – Plateforme de suivi pédiatrique." />
   <title>Inscription – GeniDoc Babies</title>
-  <link rel="stylesheet" href="/frontend/src/assets/auth.css" />
+  <link rel="stylesheet" href="/frontend/src/public/assets/auth.css" />
 </head>
 
 <body class="has-header">
   <header class="page-header">
-    <img src="/frontend/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
+    <img src="/static/Hayat.svg" alt="Logo GeniDoc" class="page-header__logo" />
     <div class="page-header__divider"></div>
     <span class="page-header__title">GeniDoc — Inscription</span>
   </header>
@@ -19,16 +19,16 @@
   <div class="auth-card">
 
     <div class="auth-tabs">
-      <a href="/frontend/src/public/auth/login.html" class="auth-tab">
+      <a href="login.html" class="auth-tab">
         <span class="tab-icon"></span> Login
       </a>
-      <a href="/frontend/src/public/auth/signup.html" class="auth-tab active">
+      <a href="signup.html" class="auth-tab active">
         <span class="tab-icon"></span> Sign Up
       </a>
     </div>
 
     <div id="signup-alert" class="alert alert-error" style="display:none;">
-      <span class="alert-icon">⚠️</span>
+      <span class="alert-icon"><img src="/static/warning.png" class="emoji-icon" alt="⚠️"></span>
       <span id="signup-alert-msg"></span>
     </div>
 
@@ -114,7 +114,7 @@
     </form>
 
     <p class="auth-footer">
-      Vous avez déjà un compte ? <a href="/frontend/src/public/auth/login.html">Se connecter</a>
+      Vous avez déjà un compte ? <a href="login.html">Se connecter</a>
     </p>
   </div>
 
@@ -190,7 +190,7 @@
           if (data.user) localStorage.setItem('user', JSON.stringify(data.user));
           alertBox.style.display = 'none';
 
-          window.location.href = data.next_route || '/frontend/src/pages/index.html';
+          window.location.href = data.next_route || '/index.html';
         } else {
           alertBox.style.display = 'flex';
           alertMsg.textContent = data.message || "Erreur lors de l'inscription.";
