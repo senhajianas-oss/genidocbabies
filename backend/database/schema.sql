@@ -1,31 +1,46 @@
 -- schema.sql for Cloudflare D1 (SQLite)
+-- Clean reset
+DROP TABLE IF EXISTS genidoc_vaccination_enfant;
+DROP TABLE IF EXISTS genidoc_vaccin_catalog;
+DROP TABLE IF EXISTS genidoc_consultation;
+DROP TABLE IF EXISTS genidoc_vital_enfant;
+DROP TABLE IF EXISTS genidoc_pediatre_enfant;
+DROP TABLE IF EXISTS genidoc_tuteur_profile;
+DROP TABLE IF EXISTS genidoc_pediatre_profile;
+DROP TABLE IF EXISTS genidoc_onboarding;
+DROP TABLE IF EXISTS genidoc_user_organisation;
+DROP TABLE IF EXISTS genidoc_organisation_settings;
+DROP TABLE IF EXISTS genidoc_organisation;
+DROP TABLE IF EXISTS genidoc_enfant;
+DROP TABLE IF EXISTS genidoc_auth_users;
 
-CREATE TABLE IF NOT EXISTS genidoc_auth_users (
+-- Re-create tables
+CREATE TABLE genidoc_auth_users (
   genidoc_user_id INTEGER PRIMARY KEY AUTOINCREMENT,
   nom TEXT NOT NULL,
   prenom TEXT NOT NULL,
   email TEXT NOT NULL UNIQUE,
   password_hash TEXT NOT NULL,
-  role TEXT NOT NULL, -- ADMIN, TUTEUR, PEDIATRE
+  role TEXT NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS genidoc_enfant (
+CREATE TABLE genidoc_enfant (
   genidoc_enfant_id INTEGER PRIMARY KEY AUTOINCREMENT,
   nom TEXT NOT NULL,
   prenom TEXT NOT NULL,
   date_naissance TEXT NOT NULL,
-  sexe TEXT NOT NULL, -- M, F
-  groupe_sanguin TEXT, -- A+, A-, etc.
+  sexe TEXT NOT NULL,
+  groupe_sanguin TEXT,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS genidoc_organisation (
+CREATE TABLE genidoc_organisation (
   genidoc_org_id INTEGER PRIMARY KEY AUTOINCREMENT,
   org_nom TEXT NOT NULL,
-  org_type TEXT NOT NULL, -- CLINIQUE, HOPITAL, etc.
+  org_type TEXT NOT NULL,
   org_ville TEXT NOT NULL,
   org_adresse TEXT NULL,
   org_telephone TEXT NULL,
@@ -37,7 +52,7 @@ CREATE TABLE IF NOT EXISTS genidoc_organisation (
   FOREIGN KEY (created_by_user_id) REFERENCES genidoc_auth_users(genidoc_user_id)
 );
 
-CREATE TABLE IF NOT EXISTS genidoc_organisation_settings (
+CREATE TABLE genidoc_organisation_settings (
   genidoc_org_id INTEGER PRIMARY KEY,
   validation_mode TEXT NOT NULL DEFAULT 'OBLIGATOIRE',
   domaines_email TEXT NULL,
@@ -46,7 +61,7 @@ CREATE TABLE IF NOT EXISTS genidoc_organisation_settings (
   FOREIGN KEY (genidoc_org_id) REFERENCES genidoc_organisation(genidoc_org_id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS genidoc_user_organisation (
+CREATE TABLE genidoc_user_organisation (
   genidoc_user_id INTEGER PRIMARY KEY,
   genidoc_org_id INTEGER NOT NULL,
   status TEXT NOT NULL DEFAULT 'ACTIVE',
@@ -56,7 +71,7 @@ CREATE TABLE IF NOT EXISTS genidoc_user_organisation (
   FOREIGN KEY (genidoc_org_id) REFERENCES genidoc_organisation(genidoc_org_id)
 );
 
-CREATE TABLE IF NOT EXISTS genidoc_onboarding (
+CREATE TABLE genidoc_onboarding (
   genidoc_user_id INTEGER PRIMARY KEY,
   role TEXT NOT NULL,
   current_step INTEGER NOT NULL DEFAULT 1,
@@ -67,7 +82,7 @@ CREATE TABLE IF NOT EXISTS genidoc_onboarding (
   FOREIGN KEY (genidoc_user_id) REFERENCES genidoc_auth_users(genidoc_user_id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS genidoc_pediatre_profile (
+CREATE TABLE genidoc_pediatre_profile (
   genidoc_user_id INTEGER PRIMARY KEY,
   numero_ordre TEXT NULL,
   telephone_pro TEXT NULL,
@@ -83,7 +98,7 @@ CREATE TABLE IF NOT EXISTS genidoc_pediatre_profile (
   FOREIGN KEY (genidoc_user_id) REFERENCES genidoc_auth_users(genidoc_user_id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS genidoc_tuteur_profile (
+CREATE TABLE genidoc_tuteur_profile (
   genidoc_user_id INTEGER PRIMARY KEY,
   telephone TEXT NULL,
   ville TEXT NULL,
@@ -94,7 +109,7 @@ CREATE TABLE IF NOT EXISTS genidoc_tuteur_profile (
   FOREIGN KEY (genidoc_user_id) REFERENCES genidoc_auth_users(genidoc_user_id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS genidoc_pediatre_enfant (
+CREATE TABLE genidoc_pediatre_enfant (
   genidoc_enfant_id INTEGER NOT NULL,
   genidoc_user_id INTEGER NOT NULL,
   code_pediatrie TEXT,
@@ -105,7 +120,7 @@ CREATE TABLE IF NOT EXISTS genidoc_pediatre_enfant (
   FOREIGN KEY (genidoc_user_id) REFERENCES genidoc_auth_users(genidoc_user_id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS genidoc_vital_enfant (
+CREATE TABLE genidoc_vital_enfant (
   genidoc_vital_id INTEGER PRIMARY KEY AUTOINCREMENT,
   genidoc_enfant_id INTEGER NOT NULL,
   poids_kg REAL NULL,
@@ -119,7 +134,7 @@ CREATE TABLE IF NOT EXISTS genidoc_vital_enfant (
   FOREIGN KEY (genidoc_enfant_id) REFERENCES genidoc_enfant(genidoc_enfant_id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS genidoc_consultation (
+CREATE TABLE genidoc_consultation (
   genidoc_consultation_id INTEGER PRIMARY KEY AUTOINCREMENT,
   genidoc_org_id INTEGER NOT NULL,
   genidoc_enfant_id INTEGER NOT NULL,
@@ -135,7 +150,7 @@ CREATE TABLE IF NOT EXISTS genidoc_consultation (
   FOREIGN KEY (genidoc_pediatre_user_id) REFERENCES genidoc_auth_users(genidoc_user_id)
 );
 
-CREATE TABLE IF NOT EXISTS genidoc_vaccin_catalog (
+CREATE TABLE genidoc_vaccin_catalog (
   genidoc_vaccin_id INTEGER PRIMARY KEY AUTOINCREMENT,
   vaccin_code TEXT NOT NULL UNIQUE,
   vaccin_nom TEXT NOT NULL,
@@ -144,7 +159,7 @@ CREATE TABLE IF NOT EXISTS genidoc_vaccin_catalog (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS genidoc_vaccination_enfant (
+CREATE TABLE genidoc_vaccination_enfant (
   genidoc_vaccination_id INTEGER PRIMARY KEY AUTOINCREMENT,
   genidoc_enfant_id INTEGER NOT NULL,
   genidoc_vaccin_id INTEGER NOT NULL,
@@ -158,29 +173,27 @@ CREATE TABLE IF NOT EXISTS genidoc_vaccination_enfant (
   FOREIGN KEY (genidoc_vaccin_id) REFERENCES genidoc_vaccin_catalog(genidoc_vaccin_id)
 );
 
--- Seed Initial Data
+-- Seed Minimal Data
+-- 1. Dr. Lahlou (password: password123)
+-- Hash generated for 'password123'
+INSERT INTO genidoc_auth_users (genidoc_user_id, nom, prenom, email, password_hash, role) 
+VALUES (1, 'Lahlou', 'Badreddine', 'dr.lahlou@genidoc.ma', '$2a$10$D68O97hW/A.L6Dgh88K.p.fEIs3X.X8QJ2yTmW/Ew6D6zD6zD6zD6', 'PEDIATRE');
 
--- 1. Create a default Admin (password: admin123)
-INSERT INTO genidoc_auth_users (nom, prenom, email, password_hash, role) 
-VALUES ('Admin', 'GeniDoc', 'admin@genidoc.ma', '$2a$10$D68O97hW/A.L6Dgh88K.p.fEIs3X.X8QJ2yTmW/Ew6D6zD6zD6zD6', 'ADMIN');
+-- 2. Organisation
+INSERT INTO genidoc_organisation (genidoc_org_id, org_nom, org_type, org_ville, org_code, created_by_user_id) 
+VALUES (1, 'Clinique Hayat', 'CLINIQUE', 'Casablanca', 'V8H5CLPX', 1);
 
--- 2. Create the Organisation linked to that Admin (ID 1)
-INSERT INTO genidoc_organisation (org_nom, org_type, org_ville, org_code, created_by_user_id) 
-VALUES ('Clinique Hayat', 'CLINIQUE', 'Casablanca', 'V8H5CLPX', 1);
+INSERT INTO genidoc_user_organisation (genidoc_user_id, genidoc_org_id, status) VALUES (1, 1, 'ACTIVE');
 
--- 3. Test Pediatrician: Dr. Badreddine Lahlou (password: password123)
-INSERT INTO genidoc_auth_users (nom, prenom, email, password_hash, role) 
-VALUES ('Lahlou', 'Badreddine', 'dr.lahlou@genidoc.ma', '$2a$10$D68O97hW/A.L6Dgh88K.p.fEIs3X.X8QJ2yTmW/Ew6D6zD6zD6zD6', 'PEDIATRE');
+-- 3. Patient: Anas SENHAJI (ID 1)
+INSERT INTO genidoc_enfant (genidoc_enfant_id, nom, prenom, date_naissance, sexe, groupe_sanguin) 
+VALUES (1, 'SENHAJI', 'Anas', '2023-05-15', 'M', 'A+');
 
--- 4. Test Patient: Anas Senhaji
-INSERT INTO genidoc_enfant (nom, prenom, date_naissance, sexe, groupe_sanguin) 
-VALUES ('Senhaji', 'Anas', '2023-05-15', 'M', 'A+');
-
--- 5. Link Patient to Doctor (Dr. Lahlou has ID 2)
+-- 4. Link Patient 1 to Doctor 1
 INSERT INTO genidoc_pediatre_enfant (genidoc_enfant_id, genidoc_user_id, code_pediatrie) 
-VALUES (1, 2, 'TEST-CODE-001');
+VALUES (1, 1, 'C1-PED-LAHLOU');
 
--- 6. Vaccins
+-- 5. Catalog
 INSERT INTO genidoc_vaccin_catalog (vaccin_code, vaccin_nom, age_recommande_mois, nb_doses) VALUES 
 ('BCG', 'Tuberculose', 0, 1),
 ('VHB', 'Hépatite B', 0, 3),
