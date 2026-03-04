@@ -56,8 +56,7 @@
             <section class="form-card">
                 <div class="form-card__header">
                     <div class="form-card__kpi">
-                        <span class="badge"><img src="/static/patient.png" class="emoji-icon"
-                                alt="Baby"></span>
+                        <span class="badge"><img src="/static/patient.png" class="emoji-icon" alt="Baby"></span>
                         <span class="form-card__title">Mes patients</span>
                     </div>
                     <div class="form-card__subtitle">
@@ -117,8 +116,8 @@
                     <div style="display: flex; gap: 15px; margin-bottom: 25px;">
                         <button id="start-scan-btn" class="card__btn"
                             style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, #6e8efb, #a777e3);">
-                            <img src="/static/quick.png" class="emoji-icon"
-                                style="filter: brightness(0) invert(1);" alt="Scan">
+                            <img src="/static/quick.png" class="emoji-icon" style="filter: brightness(0) invert(1);"
+                                alt="Scan">
                             Scanner une carte QR
                         </button>
                     </div>
@@ -208,10 +207,10 @@
             const modal = document.getElementById('card-modal');
             const LOCAL_IP = "192.168.234.195";
 
-            // Si on est sur localhost, on utilise l'IP locale, sinon on utilise le domaine final genidochayat.ma
+            // Utilisation du domaine principal pour les nouveaux QR Codes
             const baseUrl = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
                 ? `http://${LOCAL_IP}:5000`
-                : "https://genidochayat.ma";
+                : "https://genidoc.ma";
 
             const link = `${baseUrl}/scan.html?id=${id}`;
 

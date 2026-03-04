@@ -6,14 +6,23 @@
     <title>Redirecting...</title>
     <script>
         const host = window.location.hostname;
-        const params = window.location.search;
+        const path = window.location.pathname.replace('/', '');
+        const search = window.location.search;
 
-        // REDIRECTION LOGIC
-        if (host === 'genidochayat.ma' || host === 'www.genidochayat.ma') {
-            // Si on arrive sur le domaine du QR Code, on redirige vers le domaine principal avec les paramètres
-            window.location.href = "https://genidoc.ma/scan.html" + params;
+        if (host.includes('genidochayat.ma')) {
+            let targetUrl = "https://genidoc.ma/scan.html";
+
+            if (search) {
+                // Si l'id est en paramètre (?id=1)
+                window.location.href = targetUrl + search;
+            } else if (path && path.length > 2) {
+                // Si l'id est dans le chemin (/V8H5CLPX)
+                window.location.href = targetUrl + "?token=" + path;
+            } else {
+                // Cas par défaut pour votre carte de TEST (Anas Senhaji ID=1)
+                window.location.href = targetUrl + "?id=1";
+            }
         } else {
-            // Sinon (genidoc.ma ou localhost), on va vers le login par défaut
             window.location.href = "/auth/login.html";
         }
     </script>
