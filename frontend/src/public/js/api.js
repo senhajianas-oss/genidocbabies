@@ -1,5 +1,5 @@
 // For Production (AWS & Cloudflare deployment)
-const PROD_API_URL = "https://backend.genidoc.ma";
+const PROD_API_URL = "https://genidoc-backend.asenhaji2.workers.dev";
 const LOCAL_IP = "192.168.234.195";
 
 const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
@@ -23,7 +23,7 @@ async function apiFetch(endpoint, options = {}) {
         // Session expirée
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        window.location.href = '/frontend/src/public/auth/login.html';
+        window.location.href = '/auth/login.html';
         return;
     }
 

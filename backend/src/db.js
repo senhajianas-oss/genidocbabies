@@ -1,19 +1,30 @@
-const mysql = require("mysql2/promise");
-const path = require("path");
-require("dotenv").config({ path: path.join(__dirname, "../.env") });
+let pool = null;
 
-let pool;
-if (process.env.DB_HOST) {
-  pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
-    port: Number(process.env.DB_PORT || 3306),
-    waitForConnections: true,
-    connectionLimit: 10,
-    namedPlaceholders: true, // Keep it true for MySQL
-  });
+/**
+ * Lazy-load MySQL only when needed (and if we are in Node.js)
+ */
+async function getPool() {
+  if (pool) return pool;
+  if (typeof process !== "undefined" && process.env && process.env.DB_HOST) {
+    try {
+      // Use dynamic require to avoid esbuild bundling it for Workers
+      const mysql = eval('require("mysql2/promise")');
+      pool = mysql.createPool({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASS,
+        database: process.env.DB_NAME,
+        port: Number(process.env.DB_PORT || 3306),
+        waitForConnections: true,
+        connectionLimit: 10,
+        namedPlaceholders: true,
+      });
+      return pool;
+    } catch (e) {
+      console.warn("MySQL pool creation failed:", e.message);
+    }
+  }
+  return null;
 }
 
 /**
@@ -64,8 +75,9 @@ async function execute(sql, params = [], env) {
   }
 
   // 2. Fallback to MySQL Local
-  if (pool) {
-    return await pool.execute(sql, params);
+  const activePool = await getPool();
+  if (activePool) {
+    return await activePool.execute(sql, params);
   }
 
   throw new Error("No database connection available (MySQL or D1)");

@@ -1,6 +1,6 @@
 name = "genidoc-backend"
 main = "src/worker.js"
-compatibility_date = "2024-03-01"
+compatibility_date = "2024-09-23"
 compatibility_flags = [ "nodejs_compat" ]
 
 [vars]
@@ -9,4 +9,4 @@ JWT_SECRET = "genidoc-secret-key-2024"
 [[d1_databases]]
 binding = "DB"
 database_name = "genidoc-db"
-database_id = "votre-id-d1-ici"
+database_id = "e9f6a319-8a6d-4c47-b4f9-45c7385817f8"

@@ -1,10 +1,10 @@
-const { AutoRouter, cors } = require('itty-router');
-const { setEnv } = require('./db');
-const authCtrl = require('./controllers/auth.controllers');
-const adminCtrl = require('./controllers/admin.controller');
-const pedCtrl = require('./controllers/pediatre.controller');
-const tutCtrl = require('./controllers/tuteur.controller');
-const jwt = require('jsonwebtoken');
+import { AutoRouter, cors } from 'itty-router';
+import { setEnv } from './db';
+import authCtrl from './controllers/auth.controllers';
+import adminCtrl from './controllers/admin.controller';
+import pedCtrl from './controllers/pediatre.controller';
+import tutCtrl from './controllers/tuteur.controller';
+import jwt from 'jsonwebtoken';
 
 const { preflight, corsify } = cors();
 const router = AutoRouter({
@@ -37,7 +37,12 @@ const wrap = (controllerFn) => async (request, env) => {
 
     return new Response(JSON.stringify(responseObj), {
         status: resStatus,
-        headers: { 'Content-Type': 'application/json' }
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        }
     });
 };
 
@@ -91,6 +96,6 @@ router.post('/api/tuteur/urgences', authMiddleware, wrap(tutCtrl.createUrgence))
 
 router.get('/health', () => ({ ok: true }));
 
-module.exports = {
+export default {
     fetch: (request, env, ctx) => router.fetch(request, env, ctx),
 };
