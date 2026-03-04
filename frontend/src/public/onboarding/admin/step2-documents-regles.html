@@ -23,6 +23,10 @@
           <span>Admin</span>
         </div>
         <div class="info-row">
+          <span id="genidoc_id1">Nom :</span>
+          <span id="admin_nom_value">...</span>
+        </div>
+        <div class="info-row">
           <span id="genidoc_id1">Étape :</span>
           <span>Règles & documents</span>
         </div>
@@ -37,7 +41,7 @@
       </nav>
 
       <div class="langue">
-        <span class="langue-icon">🌐</span>
+        <span class="langue-icon"><img src="/static/world.png" alt="" class="genidoc_world"></span>
         <select aria-label="Langue">
           <option value="fr" selected>FR</option>
           <option value="ar">AR</option>
@@ -127,10 +131,14 @@
         }
       });
 
+      formData.append('validation_mode', document.getElementById('regle_validation').value);
+      formData.append('domaines_email', document.getElementById('domaines_email').value.trim());
+      formData.append('note_interne', document.getElementById('note_interne').value.trim());
+
       btn.textContent = 'Enregistrement...'; btn.disabled = true;
       try {
-        await window.genidocApi.admin.step2(formData);
-        window.location.href = "step3-gestion-medecins.html";
+        const data = await window.genidocApi.admin.step2(formData);
+        window.location.href = data.next_route || "step3-gestion-medecins.html";
       } catch (err) {
         alert('Erreur : ' + err.message);
       } finally {

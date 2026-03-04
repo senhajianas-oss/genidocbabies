@@ -58,7 +58,7 @@ const api = {
     // Admin
     admin: {
         step1: (data) => apiFetch('/api/admin/onboarding/step1', { method: 'POST', body: JSON.stringify(data) }),
-        step2: (formData) => fetch('/api/admin/onboarding/step2', {
+        step2: (formData) => fetch(`${API_BASE}/api/admin/onboarding/step2`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
             body: formData
@@ -78,7 +78,7 @@ const api = {
     // Pédiatre
     pediatre: {
         step1: (data) => apiFetch('/api/pediatre/onboarding/step1', { method: 'POST', body: JSON.stringify(data) }),
-        step2: (formData) => fetch('/api/pediatre/onboarding/step2', {
+        step2: (formData) => fetch(`${API_BASE}/api/pediatre/onboarding/step2`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
             body: formData
@@ -97,7 +97,7 @@ const api = {
     // Tuteur
     tuteur: {
         step1: (data) => apiFetch('/api/tuteur/onboarding/step1', { method: 'POST', body: JSON.stringify(data) }),
-        step2: (formData) => fetch('/api/tuteur/onboarding/step2', {
+        step2: (formData) => fetch(`${API_BASE}/api/tuteur/onboarding/step2`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
             body: formData

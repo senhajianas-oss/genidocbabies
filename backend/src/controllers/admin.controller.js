@@ -201,7 +201,7 @@ async function step1(req, res) {
         org_type: String(org_type).trim(),
         org_ville: String(org_ville).trim(),
       },
-      next: "/admin/onboarding/step2",
+      next_route: "step2-documents-regles.html",
     });
   } catch (e) {
     console.error("Error in admin step1:", e);
@@ -215,8 +215,7 @@ async function step1(req, res) {
 async function step2(req, res) {
   const uid = req.user?.user_id;
   const files = req.files || [];
-
-  if (!files.length) return res.status(400).json({ message: "Aucun fichier reçu" });
+  const { validation_mode, domaines_email, note_interne } = req.body || {};
 
   let conn;
   try {
@@ -243,6 +242,24 @@ async function step2(req, res) {
       );
     }
 
+    // Update settings if provided
+    if (validation_mode) {
+      const vMode = validation_mode.toUpperCase();
+      await conn.execute(
+        `UPDATE genidoc_organisation_settings 
+         SET validation_mode = :vMode, domaines_email = :domains, note_interne = :note
+         WHERE genidoc_org_id = :orgId`,
+        { vMode, domains: domaines_email || null, note: note_interne || null, orgId }
+      );
+
+      await conn.execute(
+        `UPDATE genidoc_onboarding_admin 
+         SET validation_mode = :vMode, domaines_email = :domains
+         WHERE genidoc_user_id = :uid`,
+        { vMode, domains: domaines_email || null, uid }
+      );
+    }
+
     await conn.execute(
       `UPDATE genidoc_onboarding_admin SET documents_uploaded = 1 WHERE genidoc_user_id = :uid`,
       { uid }
@@ -253,7 +270,7 @@ async function step2(req, res) {
     );
 
     await conn.commit();
-    return res.json({ message: "Documents enregistrés", next: "/admin/onboarding/step3", count: files.length });
+    return res.json({ message: "Documents et paramètres enregistrés", next: "/admin/onboarding/step3", count: files.length });
   } catch (e) {
     if (conn) await conn.rollback();
     return res.status(500).json({ message: "Erreur serveur", error: e.message });
@@ -281,7 +298,7 @@ async function step3(req, res) {
     );
 
     await conn.commit();
-    return res.json({ message: "Onboarding terminé", next: "/admin/dashboard" });
+    return res.json({ message: "Onboarding terminé", next_route: "../../dashboard/admin/index.html" });
   } catch (e) {
     if (conn) await conn.rollback();
     return res.status(500).json({ message: "Erreur serveur", error: e.message });

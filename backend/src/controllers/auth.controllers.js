@@ -133,7 +133,7 @@ async function signup(req, res) {
       user,
       onboarding: { current_step: 1, is_completed: 0 },
       membership,
-      next: role === "ADMIN" ? "/admin/onboarding/step1" : "/onboarding/step1",
+      next_route: role === "ADMIN" ? "/frontend/src/public/onboarding/admin/step1-organisation.html" : "/frontend/src/public/onboarding/tuteur/step1-profil.html",
     });
   } catch (e) {
     await conn.rollback();

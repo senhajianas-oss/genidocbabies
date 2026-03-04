@@ -23,8 +23,12 @@
           <span>Admin</span>
         </div>
         <div class="info-row">
+          <span id="genidoc_id1">Nom :</span>
+          <span id="admin_nom_value">...</span>
+        </div>
+        <div class="info-row">
           <span id="genidoc_id1">Statut :</span>
-          <span>Organisation à configurer</span>
+          <span>Configuration</span>
         </div>
       </section>
 
@@ -32,13 +36,14 @@
 
       <nav class="menu">
         <a href="#" aria-current="page">Étape 1 — Organisation</a>
-        <a href="step2-rules.html" class="disabled-link" tabindex="-1" aria-disabled="true">Étape 2 — Règles & docs</a>
-        <a href="step3-doctors.html" class="disabled-link" tabindex="-1" aria-disabled="true">Étape 3 — Gestion
+        <a href="step2-documents-regles.html" class="disabled-link" tabindex="-1" aria-disabled="true">Étape 2 — Règles
+          & docs</a>
+        <a href="step3-gestion-medecins.html" class="disabled-link" tabindex="-1" aria-disabled="true">Étape 3 — Gestion
           médecins</a>
       </nav>
 
       <div class="langue">
-        <span class="langue-icon">🌐</span>
+        <span class="langue-icon"><img src="/static/world.png" alt="" class="genidoc_world"></span>
         <select aria-label="Langue">
           <option value="fr" selected>FR</option>
           <option value="ar">AR</option>
@@ -146,8 +151,11 @@
       btn.textContent = "Envoi...";
 
       try {
-        await window.genidocApi.admin.step1(payload);
-        window.location.href = "step2-documents-regles.html";
+        const data = await window.genidocApi.admin.step1(payload);
+        if (data.organisation && data.organisation.org_code) {
+          localStorage.setItem('org_code', data.organisation.org_code);
+        }
+        window.location.href = data.next_route || "step2-documents-regles.html";
       } catch (err) {
         alert('Erreur : ' + err.message);
       } finally {
