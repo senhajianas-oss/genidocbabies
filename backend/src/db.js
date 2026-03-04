@@ -33,7 +33,17 @@ function convertNamedToPositional(sql, params) {
 
 // Global env reference for workers
 let workerEnv = null;
-function setEnv(env) { workerEnv = env; }
+function setEnv(env) {
+  workerEnv = env;
+  // Shim process.env for controllers that use it (requires nodejs_compat)
+  if (env) {
+    for (const key in env) {
+      if (typeof env[key] === 'string') {
+        process.env[key] = env[key];
+      }
+    }
+  }
+}
 
 // Universal execute function to handle both MySQL and Cloudflare D1
 async function execute(sql, params = [], env) {
