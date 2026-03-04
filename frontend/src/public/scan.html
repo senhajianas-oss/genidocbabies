@@ -55,6 +55,11 @@
     </div>
 
     <script>
+        // REDIRECTION DOMAINE (Pour les QR Codes déjà imprimés)
+        if (window.location.hostname.includes('genidochayat.ma')) {
+            window.location.href = "https://genidoc.ma/scan.html" + window.location.search;
+        }
+
         const params = new URLSearchParams(window.location.search);
         const patientId = params.get('id') || params.get('token'); // On supporte 'token' comme synonyme de 'id'
         const statusEl = document.getElementById('status');
